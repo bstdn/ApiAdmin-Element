@@ -66,4 +66,65 @@ const menuDataConfig = {
   ]
 }
 
-export { menuDataConfig }
+const logDataConfig = {
+  filterForm: {
+    type: undefined,
+    keywords: undefined
+  },
+  filterConfig: [
+    {
+      type: 'select',
+      value: 'type',
+      placeholder: '请选择类别',
+      path: [
+        { value: '1', label: '操作URL' },
+        { value: '2', label: '用户昵称' },
+        { value: '3', label: '用户ID' }
+      ],
+      width: '120px',
+      clearable: true
+    },
+    {
+      type: 'input',
+      value: 'keywords'
+    }
+  ],
+  fields: [
+    {
+      type: 'expand',
+      prop: 'expand',
+      width: 50
+    },
+    {
+      label: '行为名称',
+      prop: 'action_name',
+      align: 'center'
+    },
+    {
+      label: '用户ID',
+      prop: 'uid',
+      align: 'center',
+      width: 120
+    },
+    {
+      label: '用户昵称',
+      prop: 'nickname',
+      align: 'center',
+      width: 100
+    },
+    {
+      label: '操作URL',
+      prop: 'url',
+      align: 'center',
+      width: 200
+    },
+    {
+      label: '执行时间',
+      prop: 'add_time',
+      align: 'center',
+      width: 160
+    }
+  ]
+}
+
+export { menuDataConfig, logDataConfig }

@@ -14,7 +14,8 @@ export default {
   route: {
     dashboard: 'Dashboard',
     system: 'System Setting',
-    systemMenu: 'Menu Setting'
+    systemMenu: 'Menu Setting',
+    systemLog: 'Logs'
   },
   navbar: {
     logOut: 'Log Out',

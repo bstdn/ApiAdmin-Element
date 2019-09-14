@@ -14,7 +14,8 @@ export default {
   route: {
     dashboard: '首页',
     system: '系统配置',
-    systemMenu: '菜单维护'
+    systemMenu: '菜单维护',
+    systemLog: '操作日志'
   },
   navbar: {
     logOut: '退出登录',

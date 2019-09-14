@@ -56,7 +56,7 @@ export const asyncRoutes = [
     meta: {
       title: 'system',
       icon: 'ios-build',
-      roles: ['admin/Menu/index']
+      roles: ['admin/Menu/index', 'admin/Log/index']
     },
     children: [
       {
@@ -65,6 +65,13 @@ export const asyncRoutes = [
         name: 'SystemMenu',
         meta: { title: 'systemMenu', icon: 'menu' },
         roles: ['admin/Menu/index']
+      },
+      {
+        path: 'log',
+        component: () => import('@/views/system/log'),
+        name: 'SystemLog',
+        meta: { title: 'systemLog', icon: 'clipboard' },
+        roles: ['admin/Log/index']
       }
     ]
   },
