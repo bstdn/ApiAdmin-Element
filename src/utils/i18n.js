@@ -7,3 +7,11 @@ export function generateTitle(title) {
   }
   return title
 }
+
+export function commonTitle(title) {
+  const hasKey = i18n.te('common.' + title)
+  if (hasKey) {
+    return i18n.t('common.' + title)
+  }
+  return title
+}

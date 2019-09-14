@@ -1,0 +1,1 @@
+export { parseTime } from '@/utils'
