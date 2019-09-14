@@ -5,10 +5,9 @@ const getters = {
   size: state => state.app.size,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
+  userInfo: state => state.user.userInfo,
   token: state => state.user.token,
-  name: state => state.user.name,
   roles: state => state.user.roles,
-  avatar: state => state.user.avatar,
   permission_routes: state => state.permission.routes,
   addRoutes: state => state.permission.addRoutes
 }

@@ -11,7 +11,7 @@
       </template>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar" class="user-avatar">
+          <img :src="userAvatar" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -35,6 +35,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
+import defaultImg from '@/assets/images/default-img.jpg'
 
 export default {
   components: {
@@ -46,9 +47,12 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar',
-      'device'
-    ])
+      'device',
+      'userInfo'
+    ]),
+    userAvatar() {
+      return this.userInfo.userData.head_img ? this.userInfo.userData.head_img : defaultImg
+    }
   },
   methods: {
     toggleSideBar() {

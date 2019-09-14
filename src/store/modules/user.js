@@ -5,8 +5,7 @@ import { resetRouter } from '@/router'
 const state = {
   token: getToken(),
   roles: [],
-  name: '',
-  avatar: ''
+  userInfo: {}
 }
 
 const mutations = {
@@ -16,11 +15,8 @@ const mutations = {
   SET_ROLES: (state, roles) => {
     state.roles = roles
   },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+  SET_USER_INFO: (state, userInfo) => {
+    state.userInfo = userInfo
   }
 }
 
@@ -30,8 +26,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_USER_INFO', data)
+        commit('SET_TOKEN', data.apiAuth)
+        setToken(data.apiAuth)
         resolve()
       }).catch(error => {
         reject(error)
@@ -45,13 +42,12 @@ const actions = {
         if (!data) {
           reject('Verification failed, please login again.')
         }
-        const { roles, name, avatar } = data
-        if (!roles || roles.length <= 0) {
+        const { access } = data
+        if (!access || access.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
         }
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
+        commit('SET_USER_INFO', data)
+        commit('SET_ROLES', access)
         resolve(data)
       }).catch(error => {
         reject(error)

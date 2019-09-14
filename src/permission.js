@@ -9,7 +9,6 @@ import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false })
 
 function hasPermission(roles, permissionRoles) {
-  if (roles.indexOf('admin') >= 0) return true
   if (!permissionRoles) return true
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
@@ -32,8 +31,8 @@ router.beforeEach(async(to, from, next) => {
         }
       } else {
         try {
-          const { roles } = await store.dispatch('user/getInfo')
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+          const { access } = await store.dispatch('user/getInfo')
+          const accessRoutes = await store.dispatch('permission/generateRoutes', access)
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })
         } catch (err) {
