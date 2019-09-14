@@ -48,6 +48,26 @@ export const constantRoutes = [
 ]
 
 export const asyncRoutes = [
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/menu',
+    name: 'System',
+    meta: {
+      title: 'system',
+      icon: 'ios-build',
+      roles: ['admin/Menu/index']
+    },
+    children: [
+      {
+        path: 'menu',
+        component: () => import('@/views/system/menu'),
+        name: 'SystemMenu',
+        meta: { title: 'systemMenu', icon: 'menu' },
+        roles: ['admin/Menu/index']
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

@@ -1,6 +1,20 @@
 export default {
+  common: {
+    add: 'Add',
+    edit: 'Edit',
+    delete: 'Delete',
+    search: 'Search',
+    actions: 'Actions',
+    refresh: 'Refresh',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    tips: 'Tips',
+    deleteTips: 'This well delete the record. Continue?'
+  },
   route: {
-    dashboard: 'Dashboard'
+    dashboard: 'Dashboard',
+    system: 'System Setting',
+    systemMenu: 'Menu Setting'
   },
   navbar: {
     logOut: 'Log Out',

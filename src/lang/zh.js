@@ -1,6 +1,20 @@
 export default {
+  common: {
+    add: '新增',
+    edit: '编辑',
+    delete: '删除',
+    search: '搜索',
+    actions: '操作',
+    refresh: '刷新',
+    cancel: '取消',
+    confirm: '确定',
+    tips: '提示',
+    deleteTips: '确认删除该记录吗？'
+  },
   route: {
-    dashboard: '首页'
+    dashboard: '首页',
+    system: '系统配置',
+    systemMenu: '菜单维护'
   },
   navbar: {
     logOut: '退出登录',
