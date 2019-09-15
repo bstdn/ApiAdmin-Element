@@ -21,14 +21,8 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="login_times" slot-scope="{scope}">
-        {{ scope.row.userData === null ? '' : scope.row.userData.login_times }}
-      </template>
-      <template slot="last_login_time" slot-scope="{scope}">
-        {{ scope.row.userData === null ? '' : scope.row.userData.last_login_time }}
-      </template>
-      <template slot="last_login_ip" slot-scope="{scope}">
-        {{ scope.row.userData === null ? '' : scope.row.userData.last_login_ip }}
+      <template slot="member_list" slot-scope="{scope}">
+        <el-button type="primary" @click="handleMemberList(scope.row.id)">组成员</el-button>
       </template>
       <template slot="status" slot-scope="{scope}">
         <el-switch
@@ -53,10 +47,15 @@
       @formClose="formClose"
       @formSubmit="dialogFormSubmit"
     >
-      <template slot="group_id">
-        <el-checkbox-group v-model="dialogForm.group_id">
-          <el-checkbox v-for="group in groupList" :key="group.id" :label="group.id + ''">{{ group.name }}</el-checkbox>
-        </el-checkbox-group>
+      <template slot="rules">
+        <el-tree
+          ref="formTree"
+          :data="ruleList"
+          :props="treeProps"
+          node-key="id"
+          default-expand-all
+          show-checkbox
+        />
       </template>
     </data-form>
 
@@ -67,6 +66,30 @@
       :limit.sync="pagination.size"
       @pagination="getList"
     />
+
+    <drag-dialog
+      :form-visible.sync="memberShow.memberVisible"
+      title="组成员列表"
+      @formClose="memberShow.memberVisible = false"
+    >
+      <template slot="body">
+        <data-table
+          :data-source="memberList"
+          :data-config="memberDataConfig"
+          :btn-width="80"
+          :type="true"
+          :del="true"
+          :list-loading="memberShow.listLoading"
+          @handleDel="handleMemberDel"
+        >
+          <template slot="status" slot-scope="{scope}">
+            <el-tag :type="scope.row.status === 0 ? 'danger' : 'success'">
+              {{ scope.row.status === 0 ? '禁用' : '启用' }}
+            </el-tag>
+          </template>
+        </data-table>
+      </template>
+    </drag-dialog>
 
     <el-tooltip placement="top" content="Top">
       <back-to-top />
@@ -80,36 +103,50 @@ import FilterBar from '@/components/FilterBar'
 import DataTable from '@/components/DataTable'
 import DataForm from '@/components/DataForm'
 import Pagination from '@/components/Pagination'
+import DragDialog from '@/components/DragDialog'
 import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
-import { getGroups } from '@/api/auth'
-import { getList, changeStatus, add, edit, del } from '@/api/user'
-import { userDataConfig } from './config'
+import { getList, changeStatus, add, edit, del, delMember, getRuleList } from '@/api/auth'
+import { getUsers } from '@/api/user'
+import { authDataConfig } from './config'
 
 export default {
-  name: 'SystemUser',
+  name: 'SystemAuth',
   components: {
     BackToTop,
     FilterBar,
     DataTable,
     DataForm,
-    Pagination
+    Pagination,
+    DragDialog
   },
   mixins: [mixin],
   data() {
     return {
-      filterForm: userDataConfig.filterForm,
-      filterConfig: userDataConfig.filterConfig,
-      dataConfig: userDataConfig.fields,
-      dialogForm: Object.assign({}, userDataConfig.dialogForm),
+      filterForm: authDataConfig.filterForm,
+      filterConfig: authDataConfig.filterConfig,
+      dataConfig: authDataConfig.fields,
+      dialogForm: Object.assign({}, authDataConfig.dialogForm),
       dialogFormRules: this.realDialogFormRules(),
-      dialogConfig: userDataConfig.dialogFields,
-      groupList: []
+      dialogConfig: authDataConfig.dialogFields,
+      memberDataConfig: authDataConfig.userFields,
+      memberList: [],
+      memberShow: {
+        memberVisible: false,
+        listLoading: false,
+        page: 1,
+        size: 10,
+        total: 0,
+        gid: 0
+      },
+      ruleList: [],
+      treeProps: {
+        label: 'title'
+      }
     }
   },
   mounted() {
     this.getList()
-    this.getGroups()
   },
   methods: {
     handleFilter() {
@@ -122,7 +159,6 @@ export default {
         page: this.pagination.page,
         size: this.pagination.size,
         status: this.filterForm.status,
-        type: this.filterForm.type,
         keywords: this.filterForm.keywords
       }
       getList(params).then(response => {
@@ -131,11 +167,6 @@ export default {
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
-      })
-    },
-    getGroups() {
-      getGroups().then(response => {
-        this.groupList = response.data.list
       })
     },
     realDialogFormRules() {
@@ -153,7 +184,7 @@ export default {
           }
         ]
       }
-      return Object.assign({}, userDataConfig.dialogFormRules, rules)
+      return Object.assign({}, authDataConfig.dialogFormRules, rules)
     },
     handleSwitchChange(row) {
       changeStatus(row.status, row.id).then(response => {
@@ -161,21 +192,57 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, userDataConfig.dialogForm)
+      this.dialogForm = Object.assign({}, authDataConfig.dialogForm)
       this.dialogStatus = 'add'
+      getRuleList().then(response => {
+        this.ruleList = response.data.list
+      })
+      this.$nextTick(() => {
+        this.$refs.formTree.setCheckedKeys([])
+      })
       this.dialogFormVisible = true
     },
-    handleEdit(row) {
+    async handleEdit(row) {
       this.dialogForm.id = row.id
-      this.dialogForm.username = row.username
-      this.dialogForm.nickname = row.nickname
-      this.dialogForm.password = ''
-      this.dialogForm.group_id = row.group_id
+      this.dialogForm.name = row.name
+      this.dialogForm.description = row.description
       this.dialogStatus = 'edit'
+      this.ruleList = await this.awaitGetRuleList(row.id)
+      this.$nextTick(() => {
+        this.$refs.formTree.setCheckedKeys(this.generateCheckedKeys(this.ruleList))
+      })
       this.dialogFormVisible = true
+    },
+    awaitGetRuleList(id) {
+      return new Promise(resolve => {
+        getRuleList({ 'group_id': id }).then(response => {
+          resolve(response.data.list)
+        })
+      })
+    },
+    generateCheckedKeys(routes) {
+      let data = []
+      routes.forEach(route => {
+        if (route.checked === true) data.push(route.id)
+        if (route.children) {
+          const temp = this.generateCheckedKeys(route.children)
+          if (temp.length > 0) {
+            data = [...data, ...temp]
+          }
+        }
+      })
+      return data
     },
     dialogFormSubmit(params) {
       this.dialogSubmitLoading = true
+      params.rules = []
+      const checkedNodes = this.$refs.formTree.getCheckedNodes()
+      const ruleLength = checkedNodes.length
+      if (ruleLength) {
+        for (let i = 0; i <= ruleLength - 1; i++) {
+          params.rules.push(checkedNodes[i]['key'])
+        }
+      }
       if (this.dialogStatus === 'add') {
         add(params).then(response => {
           this.dialogFormVisible = false
@@ -199,6 +266,35 @@ export default {
     handleDel(index, row) {
       del(row.id).then(response => {
         this.list.splice(index, 1)
+        this.$message.success(response.msg)
+      })
+    },
+    handleMemberList(gid) {
+      this.memberShow.gid = gid
+      this.memberShow.memberVisible = true
+      this.getMemberList()
+    },
+    getMemberList() {
+      this.memberShow.listLoading = true
+      const params = {
+        page: this.memberShow.page,
+        size: this.memberShow.size,
+        gid: this.memberShow.gid
+      }
+      getUsers(params).then(response => {
+        this.memberList = response.data.list
+        this.memberShow.total = response.data.count
+        this.memberShow.listLoading = false
+      }).catch(() => {
+        this.memberShow.listLoading = false
+      })
+    },
+    handleMemberDel(index, row) {
+      delMember({
+        uid: row.id,
+        gid: this.memberShow.gid
+      }).then(response => {
+        this.memberList.splice(index, 1)
         this.$message.success(response.msg)
       })
     },

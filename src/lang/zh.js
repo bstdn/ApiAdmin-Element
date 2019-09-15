@@ -17,6 +17,7 @@ export default {
     system: '系统配置',
     systemMenu: '菜单维护',
     systemUser: '用户管理',
+    systemAuth: '权限管理',
     systemLog: '操作日志'
   },
   navbar: {

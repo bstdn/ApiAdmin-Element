@@ -17,6 +17,7 @@ export default {
     system: 'System Setting',
     systemMenu: 'Menu Setting',
     systemUser: 'User Setting',
+    systemAuth: 'Auth Setting',
     systemLog: 'Logs'
   },
   navbar: {

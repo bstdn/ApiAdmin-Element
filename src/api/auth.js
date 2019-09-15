@@ -1,31 +1,8 @@
 import request from '@/utils/request'
 
-export function login(data) {
-  return request({
-    url: 'Login/index',
-    method: 'post',
-    data
-  })
-}
-
-export function getInfo(token) {
-  return request({
-    url: 'Login/getUserInfo',
-    method: 'get',
-    params: { token }
-  })
-}
-
-export function logout() {
-  return request({
-    url: 'Login/logout',
-    method: 'get'
-  })
-}
-
 export function getList(params) {
   return request({
-    url: 'User/index',
+    url: 'Auth/index',
     method: 'get',
     params
   })
@@ -33,7 +10,7 @@ export function getList(params) {
 
 export function changeStatus(status, id) {
   return request({
-    url: 'User/changeStatus',
+    url: 'Auth/changeStatus',
     method: 'get',
     params: {
       status,
@@ -44,7 +21,7 @@ export function changeStatus(status, id) {
 
 export function add(data) {
   return request({
-    url: 'User/add',
+    url: 'Auth/add',
     method: 'post',
     data
   })
@@ -52,7 +29,7 @@ export function add(data) {
 
 export function edit(data) {
   return request({
-    url: 'User/edit',
+    url: 'Auth/edit',
     method: 'post',
     data
   })
@@ -60,7 +37,7 @@ export function edit(data) {
 
 export function del(id) {
   return request({
-    url: 'User/del',
+    url: 'Auth/del',
     method: 'get',
     params: {
       id
@@ -68,17 +45,24 @@ export function del(id) {
   })
 }
 
-export function own(data) {
+export function delMember(params) {
   return request({
-    url: 'User/own',
-    method: 'post',
-    data
+    url: 'Auth/delMember',
+    method: 'get',
+    params
   })
 }
 
-export function getUsers(params) {
+export function getGroups() {
   return request({
-    url: 'User/getUsers',
+    url: 'Auth/getGroups',
+    method: 'get'
+  })
+}
+
+export function getRuleList(params) {
+  return request({
+    url: 'Auth/getRuleList',
     method: 'get',
     params
   })

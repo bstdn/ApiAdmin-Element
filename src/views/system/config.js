@@ -203,6 +203,7 @@ const userDataConfig = {
     username: '',
     nickname: '',
     password: '',
+    group_id: [],
     id: 0
   },
   dialogFormRules: {
@@ -229,8 +230,127 @@ const userDataConfig = {
       prop: 'password',
       type: 'password',
       placeholder: '请输入用户密码'
+    },
+    {
+      label: '权限组',
+      prop: 'group_id'
     }
   ]
 }
 
-export { menuDataConfig, logDataConfig, userDataConfig }
+const authDataConfig = {
+  filterForm: {
+    status: undefined,
+    keywords: undefined
+  },
+  filterConfig: [
+    {
+      type: 'select',
+      value: 'status',
+      placeholder: '请选择状态',
+      path: [
+        { value: '1', label: '启用' },
+        { value: '0', label: '禁用' }
+      ],
+      width: '120px',
+      clearable: true
+    },
+    {
+      type: 'input',
+      value: 'keywords',
+      placeholder: '请输入组名称'
+    }
+  ],
+  fields: [
+    {
+      label: '组名称',
+      prop: 'name',
+      align: 'center',
+      minWidth: 100
+    },
+    {
+      label: '描述',
+      prop: 'description',
+      align: 'center'
+    },
+    {
+      label: '成员授权',
+      prop: 'member_list',
+      align: 'center',
+      width: 116
+    },
+    {
+      label: '状态',
+      prop: 'status',
+      align: 'center',
+      width: 200
+    }
+  ],
+  userFields: [
+    {
+      label: '用户账号',
+      prop: 'username',
+      align: 'center'
+    },
+    {
+      label: '真实姓名',
+      prop: 'nickname',
+      align: 'center',
+      width: 90
+    },
+    {
+      label: '登录次数',
+      prop: 'login_times',
+      align: 'center',
+      width: 90
+    },
+    {
+      label: '最后登录时间',
+      prop: 'last_login_time',
+      align: 'center',
+      width: 160
+    },
+    {
+      label: '最后登录IP',
+      prop: 'last_login_ip',
+      align: 'center',
+      width: 160
+    },
+    {
+      label: '状态',
+      prop: 'status',
+      align: 'center',
+      width: 100
+    }
+  ],
+  dialogForm: {
+    name: '',
+    description: '',
+    rules: [],
+    id: 0
+  },
+  dialogFormRules: {
+    name: [
+      { required: true, message: '组名称不能为空', trigger: 'blur' }
+    ]
+  },
+  dialogFields: [
+    {
+      label: '组名称',
+      prop: 'name',
+      placeholder: '请输入权限组名称'
+    },
+    {
+      label: '组描述',
+      prop: 'description',
+      type: 'textarea',
+      placeholder: '请输入权限组描述'
+    },
+    {
+      label: '组授权',
+      prop: 'rules'
+    }
+  ]
+}
+
+export { menuDataConfig, logDataConfig, userDataConfig, authDataConfig }
