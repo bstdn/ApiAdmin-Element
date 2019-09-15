@@ -127,4 +127,110 @@ const logDataConfig = {
   ]
 }
 
-export { menuDataConfig, logDataConfig }
+const userDataConfig = {
+  filterForm: {
+    status: undefined,
+    type: undefined,
+    keywords: undefined
+  },
+  filterConfig: [
+    {
+      type: 'select',
+      value: 'status',
+      placeholder: '请选择状态',
+      path: [
+        { value: '1', label: '启用' },
+        { value: '0', label: '禁用' }
+      ],
+      width: '120px',
+      clearable: true
+    },
+    {
+      type: 'select',
+      value: 'type',
+      placeholder: '请选择类别',
+      path: [
+        { value: '1', label: '用户账号' },
+        { value: '2', label: '真实姓名' }
+      ],
+      width: '120px',
+      clearable: true
+    },
+    {
+      type: 'input',
+      value: 'keywords'
+    }
+  ],
+  fields: [
+    {
+      label: '用户账号',
+      prop: 'username',
+      align: 'center',
+      minWidth: 120
+    },
+    {
+      label: '真实姓名',
+      prop: 'nickname',
+      align: 'center',
+      width: 120
+    },
+    {
+      label: '登录次数',
+      prop: 'login_times',
+      align: 'center',
+      width: 90
+    },
+    {
+      label: '最后登录时间',
+      prop: 'last_login_time',
+      align: 'center',
+      width: 160
+    },
+    {
+      label: '最后登录IP',
+      prop: 'last_login_ip',
+      align: 'center',
+      width: 160
+    },
+    {
+      label: '状态',
+      prop: 'status',
+      align: 'center',
+      width: 200
+    }
+  ],
+  dialogForm: {
+    username: '',
+    nickname: '',
+    password: '',
+    id: 0
+  },
+  dialogFormRules: {
+    username: [
+      { required: true, message: '用户名不能为空', trigger: 'blur' }
+    ],
+    nickname: [
+      { required: true, message: '用户昵称不能为空', trigger: 'blur' }
+    ]
+  },
+  dialogFields: [
+    {
+      label: '用户账号',
+      prop: 'username',
+      placeholder: '请输入用户账号'
+    },
+    {
+      label: '真实姓名',
+      prop: 'nickname',
+      placeholder: '请输入真实姓名'
+    },
+    {
+      label: '用户密码',
+      prop: 'password',
+      type: 'password',
+      placeholder: '请输入用户密码'
+    }
+  ]
+}
+
+export { menuDataConfig, logDataConfig, userDataConfig }

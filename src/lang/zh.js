@@ -15,6 +15,7 @@ export default {
     dashboard: '首页',
     system: '系统配置',
     systemMenu: '菜单维护',
+    systemUser: '用户管理',
     systemLog: '操作日志'
   },
   navbar: {

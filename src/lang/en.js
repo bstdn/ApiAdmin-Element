@@ -15,6 +15,7 @@ export default {
     dashboard: 'Dashboard',
     system: 'System Setting',
     systemMenu: 'Menu Setting',
+    systemUser: 'User Setting',
     systemLog: 'Logs'
   },
   navbar: {
