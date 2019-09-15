@@ -67,3 +67,11 @@ export function del(id) {
     }
   })
 }
+
+export function own(data) {
+  return request({
+    url: 'User/own',
+    method: 'post',
+    data
+  })
+}

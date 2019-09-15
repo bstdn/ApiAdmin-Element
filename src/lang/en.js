@@ -13,6 +13,7 @@ export default {
   },
   route: {
     dashboard: 'Dashboard',
+    profile: 'Profile',
     system: 'System Setting',
     systemMenu: 'Menu Setting',
     systemUser: 'User Setting',
@@ -21,7 +22,8 @@ export default {
   navbar: {
     logOut: 'Log Out',
     dashboard: 'Dashboard',
-    size: 'Global Size'
+    size: 'Global Size',
+    profile: 'Profile'
   },
   tagsView: {
     refresh: 'Refresh',

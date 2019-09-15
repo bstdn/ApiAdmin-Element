@@ -13,6 +13,7 @@ export default {
   },
   route: {
     dashboard: '首页',
+    profile: '个人中心',
     system: '系统配置',
     systemMenu: '菜单维护',
     systemUser: '用户管理',
@@ -21,7 +22,8 @@ export default {
   navbar: {
     logOut: '退出登录',
     dashboard: '首页',
-    size: '布局大小'
+    size: '布局大小',
+    profile: '个人中心'
   },
   tagsView: {
     refresh: '刷新',
