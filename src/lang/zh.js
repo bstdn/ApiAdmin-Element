@@ -18,7 +18,9 @@ export default {
     systemMenu: '菜单维护',
     systemUser: '用户管理',
     systemAuth: '权限管理',
-    systemLog: '操作日志'
+    systemLog: '操作日志',
+    interface: '接口设置',
+    interfaceGroup: '接口分组'
   },
   navbar: {
     logOut: '退出登录',

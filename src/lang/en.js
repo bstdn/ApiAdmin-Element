@@ -18,7 +18,9 @@ export default {
     systemMenu: 'Menu Setting',
     systemUser: 'User Setting',
     systemAuth: 'Auth Setting',
-    systemLog: 'Logs'
+    systemLog: 'Logs',
+    interface: 'Interface Setting',
+    interfaceGroup: 'Interface Group'
   },
   navbar: {
     logOut: 'Log Out',
