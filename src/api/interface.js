@@ -2,26 +2,26 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: 'InterfaceGroup/index',
+    url: 'InterfaceList/index',
     method: 'get',
     params
   })
 }
 
-export function changeStatus(status, id) {
+export function changeStatus(status, hash) {
   return request({
-    url: 'InterfaceGroup/changeStatus',
+    url: 'InterfaceList/changeStatus',
     method: 'get',
     params: {
       status,
-      id
+      hash
     }
   })
 }
 
 export function add(data) {
   return request({
-    url: 'InterfaceGroup/add',
+    url: 'InterfaceList/add',
     method: 'post',
     data
   })
@@ -29,7 +29,7 @@ export function add(data) {
 
 export function edit(data) {
   return request({
-    url: 'InterfaceGroup/edit',
+    url: 'InterfaceList/edit',
     method: 'post',
     data
   })
@@ -37,7 +37,7 @@ export function edit(data) {
 
 export function del(hash) {
   return request({
-    url: 'InterfaceGroup/del',
+    url: 'InterfaceList/del',
     method: 'get',
     params: {
       hash
@@ -45,9 +45,9 @@ export function del(hash) {
   })
 }
 
-export function getAll() {
+export function refresh() {
   return request({
-    url: 'InterfaceGroup/getAll',
+    url: 'InterfaceList/refresh',
     method: 'get'
   })
 }

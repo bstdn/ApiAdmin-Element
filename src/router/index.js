@@ -97,7 +97,7 @@ export const asyncRoutes = [
     meta: {
       title: 'interface',
       icon: 'ios-link',
-      roles: ['admin/InterfaceGroup/index']
+      roles: ['admin/InterfaceGroup/index', 'admin/InterfaceList/index']
     },
     children: [
       {
@@ -106,6 +106,27 @@ export const asyncRoutes = [
         name: 'InterfaceGroup',
         meta: { title: 'interfaceGroup', icon: 'archive' },
         roles: ['admin/InterfaceGroup/index']
+      },
+      {
+        path: 'interfaceList',
+        component: () => import('@/views/interface/list'),
+        name: 'InterfaceList',
+        meta: { title: 'interfaceList', icon: 'infinite' },
+        roles: ['admin/InterfaceList/index']
+      },
+      {
+        path: 'request/:hash',
+        component: () => import('@/views/interface/request'),
+        name: 'InterfaceRequest',
+        meta: { title: 'interfaceRequest', noCache: true, activeMenu: '/interface/interfaceList' },
+        hidden: true
+      },
+      {
+        path: 'response/:hash',
+        component: () => import('@/views/interface/response'),
+        name: 'InterfaceResponse',
+        meta: { title: 'interfaceResponse', noCache: true, activeMenu: '/interface/interfaceList' },
+        hidden: true
       }
     ]
   },

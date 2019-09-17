@@ -20,7 +20,10 @@ export default {
     systemAuth: 'Auth Setting',
     systemLog: 'Logs',
     interface: 'Interface Setting',
-    interfaceGroup: 'Interface Group'
+    interfaceGroup: 'Interface Group',
+    interfaceList: 'Interface List',
+    interfaceRequest: 'Request Params',
+    interfaceResponse: 'Response Params'
   },
   navbar: {
     logOut: 'Log Out',

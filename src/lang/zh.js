@@ -20,7 +20,10 @@ export default {
     systemAuth: '权限管理',
     systemLog: '操作日志',
     interface: '接口设置',
-    interfaceGroup: '接口分组'
+    interfaceGroup: '接口分组',
+    interfaceList: '接口列表',
+    interfaceRequest: '请求参数',
+    interfaceResponse: '返回参数'
   },
   navbar: {
     logOut: '退出登录',
