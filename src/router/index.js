@@ -90,6 +90,26 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/apps',
+    component: Layout,
+    redirect: '/app/appsGroup',
+    name: 'App',
+    meta: {
+      title: 'app',
+      icon: 'cloud',
+      roles: ['admin/AppGroup/index']
+    },
+    children: [
+      {
+        path: 'appsGroup',
+        component: () => import('@/views/app/group'),
+        name: 'AppGroup',
+        meta: { title: 'appGroup', icon: 'ios-archive' },
+        roles: ['admin/AppGroup/index']
+      }
+    ]
+  },
+  {
     path: '/interface',
     component: Layout,
     redirect: '/interface/interfaceGroup',

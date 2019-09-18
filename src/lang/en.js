@@ -19,6 +19,8 @@ export default {
     systemUser: 'User Setting',
     systemAuth: 'Auth Setting',
     systemLog: 'Logs',
+    app: 'Apps Setting',
+    appGroup: 'Apps Group',
     interface: 'Interface Setting',
     interfaceGroup: 'Interface Group',
     interfaceList: 'Interface List',
