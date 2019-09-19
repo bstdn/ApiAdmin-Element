@@ -90,4 +90,121 @@ const groupDataConfig = {
   ]
 }
 
-export { groupDataConfig }
+const appDataConfig = {
+  filterForm: {
+    status: undefined,
+    type: undefined,
+    keywords: undefined
+  },
+  filterConfig: [
+    {
+      type: 'select',
+      value: 'status',
+      placeholder: '请选择状态',
+      path: [
+        { value: '1', label: '启用' },
+        { value: '0', label: '禁用' }
+      ],
+      width: '120px',
+      clearable: true
+    },
+    {
+      type: 'select',
+      value: 'type',
+      placeholder: '请选择类别',
+      path: [
+        { value: '1', label: 'AppId' },
+        { value: '2', label: '应用名称' }
+      ],
+      width: '120px',
+      clearable: true
+    },
+    {
+      type: 'input',
+      value: 'keywords'
+    }
+  ],
+  fields: [
+    {
+      label: '应用名称',
+      prop: 'app_name',
+      align: 'center',
+      minWidth: 130
+    },
+    {
+      label: 'AppId',
+      prop: 'app_id',
+      align: 'center',
+      width: 120
+    },
+    {
+      label: 'AppSecret',
+      prop: 'app_secret',
+      align: 'center',
+      width: 300
+    },
+    {
+      label: '应用说明',
+      prop: 'app_info',
+      align: 'center',
+      width: 160
+    },
+    {
+      label: '状态',
+      prop: 'app_status',
+      align: 'center',
+      width: 200
+    }
+  ],
+  dialogForm: {
+    app_name: '',
+    app_id: '',
+    app_secret: '',
+    app_info: '',
+    app_api: {},
+    app_group: 'default',
+    id: 0
+  },
+  dialogFormRules: {
+    app_name: [
+      { required: true, message: '应用名称不能为空', trigger: 'blur' }
+    ]
+  },
+  dialogFields: [
+    {
+      label: '应用名称',
+      prop: 'app_name',
+      placeholder: '请输入应用名称'
+    },
+    {
+      label: 'AppId',
+      prop: 'app_id',
+      disabled: true,
+      tag: '系统自动生成，不允许修改',
+      tagType: 'danger',
+      style: 'width: 50%;'
+    },
+    {
+      label: 'AppSecret',
+      prop: 'app_secret'
+    },
+    {
+      label: '接口分组',
+      prop: 'group_hash',
+      type: 'select',
+      source: 'menu',
+      clearable: false
+    },
+    {
+      label: '应用描述',
+      prop: 'app_info',
+      type: 'textarea'
+    },
+    {
+      label: '接口访问',
+      prop: 'app_api'
+    }
+  ]
+}
+
+export { groupDataConfig, appDataConfig }

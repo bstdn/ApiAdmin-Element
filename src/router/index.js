@@ -97,7 +97,7 @@ export const asyncRoutes = [
     meta: {
       title: 'app',
       icon: 'cloud',
-      roles: ['admin/AppGroup/index']
+      roles: ['admin/AppGroup/index', 'admin/App/index']
     },
     children: [
       {
@@ -106,6 +106,13 @@ export const asyncRoutes = [
         name: 'AppGroup',
         meta: { title: 'appGroup', icon: 'ios-archive' },
         roles: ['admin/AppGroup/index']
+      },
+      {
+        path: 'appList',
+        component: () => import('@/views/app/list'),
+        name: 'AppList',
+        meta: { title: 'appList', icon: 'md-list-box' },
+        roles: ['admin/App/index']
       }
     ]
   },

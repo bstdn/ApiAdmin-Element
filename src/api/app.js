@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: 'AppGroup/index',
+    url: 'App/index',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function getList(params) {
 
 export function changeStatus(status, id) {
   return request({
-    url: 'AppGroup/changeStatus',
+    url: 'App/changeStatus',
     method: 'get',
     params: {
       status,
@@ -21,7 +21,7 @@ export function changeStatus(status, id) {
 
 export function add(data) {
   return request({
-    url: 'AppGroup/add',
+    url: 'App/add',
     method: 'post',
     data
   })
@@ -29,25 +29,35 @@ export function add(data) {
 
 export function edit(data) {
   return request({
-    url: 'AppGroup/edit',
+    url: 'App/edit',
     method: 'post',
     data
   })
 }
 
-export function del(hash) {
+export function del(id) {
   return request({
-    url: 'AppGroup/del',
+    url: 'App/del',
     method: 'get',
     params: {
-      hash
+      id
     }
   })
 }
 
-export function getAll() {
+export function getAppInfo(id) {
   return request({
-    url: 'AppGroup/getAll',
+    url: 'App/getAppInfo',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+export function refreshAppSecretApi() {
+  return request({
+    url: 'App/refreshAppSecret',
     method: 'get'
   })
 }

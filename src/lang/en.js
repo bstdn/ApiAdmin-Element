@@ -21,6 +21,7 @@ export default {
     systemLog: 'Logs',
     app: 'Apps Setting',
     appGroup: 'Apps Group',
+    appList: 'Apps List',
     interface: 'Interface Setting',
     interfaceGroup: 'Interface Group',
     interfaceList: 'Interface List',
