@@ -54,3 +54,11 @@ npm run build
 ```
 npm run lint
 ```
+
+## 相关技术栈
+
+- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+- [Element](https://element.eleme.cn)
+- [Vue](https://github.com/vuejs/vue)
+- [Vue-Loader](https://vue-loader.vuejs.org/zh/guide/)
+- [Webpack](https://github.com/webpack/webpack)
