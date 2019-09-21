@@ -6,6 +6,14 @@
           <svg-icon icon-class="md-list-box" />
           接口列表
         </router-link>
+        <router-link to="error" class="right-menu-item">
+          <svg-icon icon-class="md-list-box" />
+          错误码
+        </router-link>
+        <router-link to="calculation" class="right-menu-item">
+          <svg-icon icon-class="md-list-box" />
+          算法详解
+        </router-link>
         <el-dropdown class="right-menu-item hover-effect" style="margin-right: 30px;">
           <span class="el-dropdown-link">
             <i class="el-icon-user-solid" />

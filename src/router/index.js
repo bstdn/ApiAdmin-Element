@@ -66,6 +66,18 @@ export const constantRoutes = [
         component: () => import('@/views/wiki/list'),
         name: 'WikiList',
         meta: { title: 'wikiList' }
+      },
+      {
+        path: 'error',
+        component: () => import('@/views/wiki/error-code'),
+        name: 'WikiError',
+        meta: { title: 'wikiError' }
+      },
+      {
+        path: 'calculation',
+        component: () => import('@/views/wiki/calculation'),
+        name: 'WikiCalculation',
+        meta: { title: 'wikiCalculation' }
       }
     ]
   }

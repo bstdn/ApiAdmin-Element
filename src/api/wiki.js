@@ -14,3 +14,25 @@ export function logout() {
     method: 'get'
   })
 }
+
+export function apiGroup() {
+  return request({
+    url: 'Api/groupList',
+    method: 'get'
+  })
+}
+
+export function errorCode() {
+  return request({
+    url: 'Api/errorCode',
+    method: 'get'
+  })
+}
+
+export function detail(params) {
+  return request({
+    url: 'Api/detail',
+    method: 'get',
+    params
+  })
+}

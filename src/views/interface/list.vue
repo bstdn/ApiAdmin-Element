@@ -11,6 +11,7 @@
     >
       <template slot="moreButton">
         <el-button :loading="refreshLoading" type="warning" icon="el-icon-refresh-right" @click="refreshRoute">刷新路由</el-button>
+        <el-button type="info" icon="el-icon-document" @click="$router.push('/wiki/list')">接口文档</el-button>
       </template>
     </filter-bar>
 
