@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Layout from '@/layout'
+import Wiki from '@/layout/wiki'
 
 export const constantRoutes = [
   {
@@ -42,6 +43,29 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/wiki/login',
+    component: () => import('@/views/wiki/login'),
+    hidden: true
+  },
+  {
+    path: '/wiki',
+    component: Wiki,
+    redirect: '/wiki/list',
+    name: 'Wiki',
+    meta: {
+      title: 'wiki'
+    },
+    hidden: true,
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/wiki/list'),
+        name: 'WikiList',
+        meta: { title: 'wikiList' }
       }
     ]
   }

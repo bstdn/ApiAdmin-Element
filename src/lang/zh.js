@@ -46,6 +46,12 @@ export default {
     username: '账号',
     password: '密码'
   },
+  wikiLogin: {
+    title: '文档中心',
+    logIn: '登录',
+    username: 'App Id',
+    password: 'App Secret'
+  },
   settings: {
     title: '系统布局配置',
     theme: '主题色',

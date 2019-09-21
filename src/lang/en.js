@@ -46,6 +46,12 @@ export default {
     username: 'Username',
     password: 'Password'
   },
+  wikiLogin: {
+    title: 'Wiki Login',
+    logIn: 'Log in',
+    username: 'App Id',
+    password: 'App Secret'
+  },
   settings: {
     title: 'Page style setting',
     theme: 'Theme Color',

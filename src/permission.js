@@ -13,41 +13,54 @@ function hasPermission(roles, permissionRoles) {
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
-const whiteList = ['/login']
+const whiteList = ['/login', '/wiki/login']
 
 router.beforeEach(async(to, from, next) => {
   NProgress.start()
   document.title = getPageTitle(to.meta.title)
   if (getToken()) {
-    if (to.path === '/login') {
-      next({ path: '/' })
-      NProgress.done()
-    } else {
-      if (store.getters.roles && store.getters.roles.length > 0) {
-        if (hasPermission(store.getters.roles, to.meta.roles)) {
-          next()
-        } else {
-          next({ path: '/401', replace: true, query: { noGoBack: true }})
-        }
+    if (to.path.indexOf('/wiki') === -1) {
+      if (to.path === '/login') {
+        next({ path: '/' })
+        NProgress.done()
       } else {
-        try {
-          const { access } = await store.dispatch('user/getInfo')
-          const accessRoutes = await store.dispatch('permission/generateRoutes', access)
-          router.addRoutes(accessRoutes)
-          next({ ...to, replace: true })
-        } catch (err) {
-          await store.dispatch('user/resetToken')
-          Message.error(err || 'Has Error')
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
+        if (store.getters.roles && store.getters.roles.length > 0) {
+          if (hasPermission(store.getters.roles, to.meta.roles)) {
+            next()
+          } else {
+            next({ path: '/401', replace: true, query: { noGoBack: true }})
+          }
+        } else {
+          try {
+            const { access } = await store.dispatch('user/getInfo')
+            const accessRoutes = await store.dispatch('permission/generateRoutes', access)
+            router.addRoutes(accessRoutes)
+            next({ ...to, replace: true })
+          } catch (err) {
+            await store.dispatch('user/resetToken')
+            Message.error(err || 'Has Error')
+            next(`/login?redirect=${to.path}`)
+            NProgress.done()
+          }
         }
+      }
+    } else {
+      if (to.path === '/wiki/login') {
+        next({ path: '/wiki/list' })
+        NProgress.done()
+      } else {
+        next()
       }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
-      next(`/login?redirect=${to.path}`)
+      if (to.path.indexOf('/wiki') === -1) {
+        next(`/login?redirect=${to.path}`)
+      } else {
+        next(`/wiki/login?redirect=${to.path}`)
+      }
       NProgress.done()
     }
   }

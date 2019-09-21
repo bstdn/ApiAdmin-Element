@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
       <div class="title-container">
-        <h3 class="title">{{ $t('login.title') }}</h3>
+        <h3 class="title">{{ $t('wikiLogin.title') }}</h3>
         <lang-select class="set-language" />
       </div>
       <el-form-item prop="username">
@@ -12,7 +12,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          :placeholder="$t('login.username')"
+          :placeholder="$t('wikiLogin.username')"
           name="username"
           type="text"
           tabindex="1"
@@ -28,7 +28,7 @@
             ref="password"
             v-model="loginForm.password"
             :type="passwordType"
-            :placeholder="$t('login.password')"
+            :placeholder="$t('wikiLogin.password')"
             name="password"
             tabindex="2"
             autocomplete="on"
@@ -47,7 +47,7 @@
         style="width: 100%;"
         @click.native.prevent="handleLogin"
       >
-        {{ $t('login.logIn') }}
+        {{ $t('wikiLogin.logIn') }}
       </el-button>
     </el-form>
   </div>
@@ -57,7 +57,7 @@
 import LangSelect from '@/components/LangSelect'
 
 export default {
-  name: 'Login',
+  name: 'WikiLogin',
   components: {
     LangSelect
   },
@@ -68,8 +68,8 @@ export default {
         password: ''
       },
       loginRules: {
-        username: [{ required: true, message: 'please input username', trigger: 'blur' }],
-        password: [{ required: true, message: 'please input password', trigger: 'blur' }]
+        username: [{ required: true, message: 'please input App Id', trigger: 'blur' }],
+        password: [{ required: true, message: 'please input App Secret', trigger: 'blur' }]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -111,10 +111,10 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            sessionStorage.setItem('ApiAdmin_AppInfo', '管理员')
+          this.$store.dispatch('wiki/login', this.loginForm).then(response => {
+            sessionStorage.setItem('ApiAdmin_AppInfo', response.app_id)
             this.loading = false
-            this.$router.push({ path: this.redirect || '/' })
+            this.$router.push({ path: this.redirect || '/wiki/list' })
           }).catch(() => {
             this.loading = false
           })
@@ -143,6 +143,10 @@ export default {
 
   /* reset element-ui css */
   .login-container {
+    background-image: url('~@/assets/images/login-wiki.svg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
     .el-input {
       display: inline-block;
       height: 47px;
@@ -181,6 +185,10 @@ export default {
     min-height: 100%;
     width: 100%;
     background-color: $bg;
+    background-image: url('~@/assets/images/login-wiki.svg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
     overflow: hidden;
     .login-form {
       position: relative;
