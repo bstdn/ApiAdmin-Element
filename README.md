@@ -28,7 +28,7 @@ cd vue-element-api-admin
 ### Project setup
 
 ```
-npm install
+npm install // or yarn
 
 # 国内
 npm install --registry=https://registry.npm.taobao.org
@@ -37,10 +37,10 @@ npm install --registry=https://registry.npm.taobao.org
 ### Compiles and hot-reloads for development
 
 ```
-npm run dev
+npm run dev // or yarn dev
 
 # 指定端口
-npm run dev --port=8080
+npm run dev --port=8080 // or yarn dev --port=8080
 ```
 
 ### Compiles and minifies for production
@@ -62,3 +62,17 @@ npm run lint
 - [Vue](https://github.com/vuejs/vue)
 - [Vue-Loader](https://vue-loader.vuejs.org/zh/guide/)
 - [Webpack](https://github.com/webpack/webpack)
+
+## 效果展示
+
+![输入图片说明](https://gitee.com/bstdn/codes/bi8us4dozcg5mna7qx6wv30/raw?blob_name=menu.png "menu.png")
+
+![输入图片说明](https://gitee.com/bstdn/codes/bi8us4dozcg5mna7qx6wv30/raw?blob_name=appList.png "appslist.png")
+
+![输入图片说明](https://gitee.com/bstdn/codes/bi8us4dozcg5mna7qx6wv30/raw?blob_name=interfaceList.png "interfaceList.png")
+
+## License
+
+[MIT](https://github.com/bstdn/vue-element-api-admin/blob/master/LICENSE)
+
+Copyright (c) 2019-present, bstdn
