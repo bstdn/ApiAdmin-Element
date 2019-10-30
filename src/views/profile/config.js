@@ -6,7 +6,7 @@ const profileDataConfig = {
       disabled: true
     },
     {
-      label: '真实姓名',
+      label: '用户昵称',
       prop: 'nickname'
     },
     {
@@ -34,7 +34,7 @@ const profileDataConfig = {
   },
   rules: {
     nickname: [
-      { required: true, message: '请输入姓名', trigger: 'blur' }
+      { required: true, message: '请输入用户昵称', trigger: 'blur' }
     ],
     password: [
       { min: 6, message: '请至少输入6个字符', trigger: 'blur' },

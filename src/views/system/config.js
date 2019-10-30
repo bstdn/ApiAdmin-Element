@@ -169,7 +169,7 @@ const userDataConfig = {
       minWidth: 120
     },
     {
-      label: '真实姓名',
+      label: '用户昵称',
       prop: 'nickname',
       align: 'center',
       width: 120
@@ -221,9 +221,9 @@ const userDataConfig = {
       placeholder: '请输入用户账号'
     },
     {
-      label: '真实姓名',
+      label: '用户昵称',
       prop: 'nickname',
-      placeholder: '请输入真实姓名'
+      placeholder: '请输入用户昵称'
     },
     {
       label: '用户密码',
@@ -293,7 +293,7 @@ const authDataConfig = {
       align: 'center'
     },
     {
-      label: '真实姓名',
+      label: '用户昵称',
       prop: 'nickname',
       align: 'center',
       width: 90
