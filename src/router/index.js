@@ -99,29 +99,25 @@ export const asyncRoutes = [
         path: 'menu',
         component: () => import('@/views/system/menu'),
         name: 'SystemMenu',
-        meta: { title: 'systemMenu', icon: 'menu' },
-        roles: ['admin/Menu/index']
+        meta: { title: 'systemMenu', icon: 'menu', roles: 'admin/Menu/index' }
       },
       {
         path: 'user',
         component: () => import('@/views/system/user'),
         name: 'SystemUser',
-        meta: { title: 'systemUser', icon: 'ios-people' },
-        roles: ['admin/User/index']
+        meta: { title: 'systemUser', icon: 'ios-people', roles: 'admin/User/index' }
       },
       {
         path: 'auth',
         component: () => import('@/views/system/auth'),
         name: 'SystemAuth',
-        meta: { title: 'systemAuth', icon: 'lock' },
-        roles: ['admin/Auth/index']
+        meta: { title: 'systemAuth', icon: 'lock', roles: 'admin/Auth/index' }
       },
       {
         path: 'log',
         component: () => import('@/views/system/log'),
         name: 'SystemLog',
-        meta: { title: 'systemLog', icon: 'clipboard' },
-        roles: ['admin/Log/index']
+        meta: { title: 'systemLog', icon: 'clipboard', roles: 'admin/Log/index' }
       }
     ]
   },
@@ -140,15 +136,13 @@ export const asyncRoutes = [
         path: 'appsGroup',
         component: () => import('@/views/app/group'),
         name: 'AppGroup',
-        meta: { title: 'appGroup', icon: 'ios-archive' },
-        roles: ['admin/AppGroup/index']
+        meta: { title: 'appGroup', icon: 'ios-archive', roles: 'admin/AppGroup/index' }
       },
       {
         path: 'appList',
         component: () => import('@/views/app/list'),
         name: 'AppList',
-        meta: { title: 'appList', icon: 'md-list-box' },
-        roles: ['admin/App/index']
+        meta: { title: 'appList', icon: 'md-list-box', roles: 'admin/App/index' }
       }
     ]
   },
@@ -167,15 +161,13 @@ export const asyncRoutes = [
         path: 'interfaceGroup',
         component: () => import('@/views/interface/group'),
         name: 'InterfaceGroup',
-        meta: { title: 'interfaceGroup', icon: 'archive' },
-        roles: ['admin/InterfaceGroup/index']
+        meta: { title: 'interfaceGroup', icon: 'archive', roles: 'admin/InterfaceGroup/index' }
       },
       {
         path: 'interfaceList',
         component: () => import('@/views/interface/list'),
         name: 'InterfaceList',
-        meta: { title: 'interfaceList', icon: 'infinite' },
-        roles: ['admin/InterfaceList/index']
+        meta: { title: 'interfaceList', icon: 'infinite', roles: 'admin/InterfaceList/index' }
       },
       {
         path: 'request/:hash',
