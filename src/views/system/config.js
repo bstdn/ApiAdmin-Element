@@ -151,7 +151,7 @@ const userDataConfig = {
       placeholder: '请选择类别',
       path: [
         { value: '1', label: '用户账号' },
-        { value: '2', label: '真实姓名' }
+        { value: '2', label: '用户昵称' }
       ],
       width: '120px',
       clearable: true
