@@ -127,7 +127,7 @@ export default {
       filterConfig: authDataConfig.filterConfig,
       dataConfig: authDataConfig.fields,
       dialogForm: Object.assign({}, authDataConfig.dialogForm),
-      dialogFormRules: this.realDialogFormRules(),
+      dialogFormRules: authDataConfig.dialogFormRules,
       dialogConfig: authDataConfig.dialogFields,
       memberDataConfig: authDataConfig.userFields,
       memberList: [],
@@ -168,23 +168,6 @@ export default {
       }).catch(() => {
         this.listLoading = false
       })
-    },
-    realDialogFormRules() {
-      const rules = {
-        password: [
-          {
-            required: true,
-            trigger: 'blur',
-            validator: (role, value, callback) => {
-              if (this.dialogForm.id === 0 && value === '') {
-                callback(new Error('用户密码不能为空'))
-              }
-              callback()
-            }
-          }
-        ]
-      }
-      return Object.assign({}, authDataConfig.dialogFormRules, rules)
     },
     handleSwitchChange(row) {
       changeStatus(row.status, row.id).then(response => {
