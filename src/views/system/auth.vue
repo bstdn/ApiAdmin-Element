@@ -69,6 +69,7 @@
 
     <drag-dialog
       :form-visible.sync="memberShow.memberVisible"
+      width="90%"
       title="组成员列表"
       @formClose="memberShow.memberVisible = false"
     >
@@ -88,6 +89,14 @@
             </el-tag>
           </template>
         </data-table>
+
+        <pagination
+          v-show="memberShow.total>0"
+          :total="memberShow.total"
+          :page.sync="memberShow.page"
+          :limit.sync="memberShow.size"
+          @pagination="getMemberList"
+        />
       </template>
     </drag-dialog>
 
