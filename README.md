@@ -65,17 +65,17 @@ npm run lint
 
 ## 效果展示
 
-![输入图片说明](https://gitee.com/bstdn/codes/bi8us4dozcg5mna7qx6wv30/raw?blob_name=menu.png "menu.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1123/111129_50384013_1185106.png "menu.png")
 
-![输入图片说明](https://gitee.com/bstdn/codes/bi8us4dozcg5mna7qx6wv30/raw?blob_name=appList.png "appslist.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1123/111426_7130df97_1185106.png "appList.png")
 
-![输入图片说明](https://gitee.com/bstdn/codes/bi8us4dozcg5mna7qx6wv30/raw?blob_name=interfaceList.png "interfaceList.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1123/111451_2df8d595_1185106.png "interfaceList.png")
 
 ## 赞赏
 
 **请作者喝杯咖啡吧！(微信号/QQ号：99808359)**
 
-<img width="236" alt="微信扫一扫" src="https://gitee.com/bstdn/codes/u09cbxavoljw8z3gfe7r420/raw?blob_name=weixin.jpeg">
+<img width="236" alt="微信扫一扫" src="https://images.gitee.com/uploads/images/2019/1122/203838_862f04ff_1185106.jpeg">
 
 ## License
 
