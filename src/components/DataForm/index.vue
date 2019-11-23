@@ -29,7 +29,7 @@
               <el-radio
                 v-for="option in item.path"
                 :key="option.label"
-                :disabled="item.disabled"
+                :disabled="option.disabled"
                 :label="option.label"
               >
                 {{ option.description }}
