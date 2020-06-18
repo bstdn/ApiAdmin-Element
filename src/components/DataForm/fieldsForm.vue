@@ -1,8 +1,8 @@
 <template>
   <div id="fieldsForm">
     <el-form-item
-      v-for="(item, index) in formConfig"
-      :key="index"
+      v-for="item in formConfig"
+      :key="item.prop"
       :label="item.label"
       :prop="item.prop"
     >
@@ -11,11 +11,9 @@
           <template v-if="item.type === 'password'">
             <el-input
               v-model="dataForm[item.prop]"
+              v-bind="item"
               :type="passwordType"
-              :minlength="item.minlength"
               :maxlength="item.maxlength || 255"
-              :disabled="item.disabled"
-              :placeholder="item.placeholder"
             />
             <span class="show-pwd" @click="showPwd">
               <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -24,11 +22,8 @@
           <el-input
             v-else
             v-model="dataForm[item.prop]"
-            :type="item.type"
-            :minlength="item.minlength"
+            v-bind="item"
             :maxlength="item.maxlength || 255"
-            :disabled="item.disabled"
-            :placeholder="item.placeholder"
             clearable
           >
             <template v-if="item.prepend" slot="prepend">{{ item.prepend }}</template>
@@ -41,8 +36,6 @@
 </template>
 
 <script>
-import { commonTitle } from '@/utils/i18n'
-
 export default {
   name: 'FieldsForm',
   props: {
@@ -63,8 +56,7 @@ export default {
   methods: {
     showPwd() {
       this.passwordType = this.passwordType === 'password' ? '' : 'password'
-    },
-    commonTitle
+    }
   }
 }
 </script>

@@ -2,22 +2,16 @@
   <el-table
     v-loading="listLoading"
     :data="dataSource"
-    border
-    fit
     highlight-current-row
+    border
   >
     <slot name="prepend" />
     <el-table-column v-if="type" type="index" width="50" align="center" />
     <el-table-column
       v-for="item in dataConfig"
       :key="item.prop"
-      :type="item.type"
-      :prop="item.prop"
-      :label="item.label"
-      :width="item.width"
-      :min-width="item.minWidth"
-      :align="item.align"
-      :header-align="item.headerAlign"
+      v-bind="item"
+      :align="item.align || 'center'"
     >
       <template slot-scope="scope">
         <slot :scope="scope" :name="item.prop">

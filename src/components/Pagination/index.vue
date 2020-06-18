@@ -6,9 +6,8 @@
       :page-size.sync="pageSize"
       :page-sizes="pageSizes"
       :current-page.sync="currentPage"
-      :layout="layout"
+      :layout="deviceLayout"
       :background="background"
-      :style="{ float: float }"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -18,7 +17,6 @@
 
 <script>
 import { scrollTo } from '@/utils/scroll-to'
-import { commonTitle } from '@/utils/i18n'
 
 export default {
   name: 'Pagination',
@@ -41,7 +39,7 @@ export default {
     },
     layout: {
       type: String,
-      default: 'total, sizes, prev, pager, next, jumper'
+      default: '->, total, sizes, prev, pager, next, jumper'
     },
     background: {
       type: Boolean,
@@ -61,6 +59,9 @@ export default {
     }
   },
   computed: {
+    deviceLayout() {
+      return this.$store.state.app.device !== 'mobile' ? this.layout : this.mobileLayout
+    },
     currentPage: {
       get() {
         return this.page
@@ -90,8 +91,7 @@ export default {
       if (this.autoScroll) {
         scrollTo(0, 800)
       }
-    },
-    commonTitle
+    }
   }
 }
 </script>

@@ -1,7 +1,8 @@
 <template>
   <el-dialog
+    v-if="formVisible"
     v-el-drag-dialog
-    :title="title"
+    :title="commonTitle(title)"
     :width="deviceWidth"
     :visible.sync="formVisible"
     :before-close="formClose"
@@ -31,22 +32,15 @@
                 :key="option.label"
                 :disabled="option.disabled"
                 :label="option.label"
-              >
-                {{ option.description }}
-              </el-radio>
+              >{{ option.description }}</el-radio>
             </el-radio-group>
             <template v-else-if="item.type === 'select'">
               <el-select
                 v-model="dataForm[item.prop]"
-                :multiple="item.multiple"
-                :disabled="item.disabled"
-                :clearable="item.clearable === false ? false : true"
-                :placeholder="item.placeholder"
-                :allow-create="item.allowCreate"
-                :remote="item.remote"
+                v-bind="item"
+                :clearable="item.clearable !== false"
                 :remote-method="item.source === 'menu' ? menuRemoteMethod : remoteMethod"
                 :loading="selectLoading"
-                :reserve-keyword="item.reserveKeyword"
                 :style="item.style || 'width: 100%;'"
                 filterable
                 @change="handleSelectChange"
@@ -54,9 +48,7 @@
                 <el-option
                   v-for="option in item.source === 'menu' ? menuPath : item.path"
                   :key="option.value"
-                  :label="option.label"
-                  :value="option.value"
-                  :disabled="option.disabled"
+                  v-bind="option"
                 />
               </el-select>
               <el-tooltip v-if="item.tooltip" effect="dark" placement="right">
@@ -67,11 +59,9 @@
             <template v-else-if="item.type === 'password'">
               <el-input
                 v-model="dataForm[item.prop]"
+                v-bind="item"
                 :type="passwordType"
-                :minlength="item.minlength"
                 :maxlength="item.maxlength || 255"
-                :disabled="item.disabled"
-                :placeholder="item.placeholder"
               />
               <span class="show-pwd" @click="showPwd">
                 <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -80,14 +70,7 @@
             <template v-else-if="item.type === 'inputNumber'">
               <el-input-number
                 v-model="dataForm[item.prop]"
-                :min="item.min"
-                :max="item.max"
-                :step="item.step"
-                :step-strictly="item.stepStrictly"
-                :precision="item.precision"
-                :disabled="item.disabled"
-                :controls-position="item.controlsPosition"
-                :placeholder="item.placeholder"
+                v-bind="item"
               >
                 <template v-if="item.prepend" slot="prepend">{{ item.prepend }}</template>
                 <template v-if="item.append" slot="append">{{ item.append }}</template>
@@ -97,21 +80,13 @@
             <el-input
               v-else-if="item.type === 'textarea'"
               v-model="dataForm[item.prop]"
-              :type="item.type"
-              :minlength="item.minlength"
-              :maxlength="item.maxlength"
-              :rows="item.rows"
-              :autosize="item.autosize"
-              :disabled="item.disabled"
-              :placeholder="item.placeholder"
+              v-bind="item"
             />
             <template v-else>
               <el-input
                 v-model="dataForm[item.prop]"
-                :minlength="item.minlength"
+                v-bind="item"
                 :maxlength="item.maxlength || 255"
-                :disabled="item.disabled"
-                :placeholder="item.placeholder"
                 :style="item.style || 'width: 100%;'"
                 clearable
               >
@@ -127,15 +102,13 @@
     </el-form>
     <div slot="footer" class="dialog-footer">
       <slot name="footerPrepend" />
-      <el-button type="text" @click="formClose">{{ cancelText }}</el-button>
+      <el-button type="text" @click="formClose">{{ commonTitle(cancelText) }}</el-button>
       <el-button
         v-if="isSubmit"
         :loading="submitLoading"
         type="primary"
         @click="formSubmit"
-      >
-        {{ submitText }}
-      </el-button>
+      >{{ commonTitle(submitText) }}</el-button>
       <slot name="footerAppend" />
     </div>
   </el-dialog>
@@ -165,11 +138,15 @@ export default {
     },
     title: {
       type: String,
-      default: commonTitle('tips')
+      default: 'tips'
     },
     width: {
       type: String,
       default: '50%'
+    },
+    mobileWidth: {
+      type: String,
+      default: '90%'
     },
     formVisible: {
       type: Boolean,
@@ -185,11 +162,11 @@ export default {
     },
     cancelText: {
       type: String,
-      default: commonTitle('cancel')
+      default: 'cancel'
     },
     submitText: {
       type: String,
-      default: commonTitle('confirm')
+      default: 'confirm'
     },
     isSubmit: {
       type: Boolean,
@@ -211,7 +188,7 @@ export default {
   },
   computed: {
     deviceWidth() {
-      return this.$store.state.app.device !== 'mobile' ? this.width : '90%'
+      return this.$store.state.app.device !== 'mobile' ? this.width : this.mobileWidth
     },
     labelPosition() {
       return this.$store.state.app.device !== 'mobile' ? 'right' : 'top'
@@ -226,14 +203,12 @@ export default {
     },
     formClose() {
       this.$emit('formClose')
-      this.$refs.dataForm.clearValidate()
     },
     formSubmit() {
       this.$refs.dataForm.validate((valid) => {
         if (valid) {
           const params = Object.assign({}, this.dataForm)
           this.$emit('formSubmit', params)
-          this.$refs.dataForm.clearValidate()
         }
       })
     },
