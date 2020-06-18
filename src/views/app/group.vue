@@ -21,7 +21,7 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="status" slot-scope="{scope}">
+      <template #status="{scope}">
         <el-switch
           v-model="scope.row.status"
           :active-value="1"
@@ -102,11 +102,8 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
-        status: this.filterForm.status,
-        type: this.filterForm.type,
-        keywords: this.filterForm.keywords
+        ...this.pagination,
+        ...this.filterForm
       }
       getList(params).then(response => {
         this.list = response.data.list

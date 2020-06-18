@@ -19,10 +19,10 @@
           :data-form="postForm"
           :form-config="formFields"
         >
-          <template slot="username">
+          <template #username>
             <el-input v-model="username" disabled />
           </template>
-          <template slot="head_img">
+          <template #head_img>
             <avatar-upload v-model="postForm.head_img" />
           </template>
         </fields-form>

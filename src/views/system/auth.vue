@@ -21,10 +21,10 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="member_list" slot-scope="{scope}">
+      <template #member_list="{scope}">
         <el-button type="primary" @click="handleMemberList(scope.row.id)">组成员</el-button>
       </template>
-      <template slot="status" slot-scope="{scope}">
+      <template #status="{scope}">
         <el-switch
           v-model="scope.row.status"
           :active-value="1"
@@ -47,9 +47,10 @@
       @formClose="formClose"
       @formSubmit="dialogFormSubmit"
     >
-      <template slot="rules">
+      <template #rules>
         <el-tree
           ref="formTree"
+          class="rule-list"
           :data="ruleList"
           :props="treeProps"
           node-key="id"
@@ -73,7 +74,7 @@
       title="组成员列表"
       @formClose="memberShow.memberVisible = false"
     >
-      <template slot="body">
+      <template #body>
         <data-table
           :data-source="memberList"
           :data-config="memberDataConfig"
@@ -83,7 +84,7 @@
           :list-loading="memberShow.listLoading"
           @handleDel="handleMemberDel"
         >
-          <template slot="status" slot-scope="{scope}">
+          <template #status="{scope}">
             <el-tag :type="scope.row.status === 0 ? 'danger' : 'success'">
               {{ scope.row.status === 0 ? '禁用' : '启用' }}
             </el-tag>
@@ -135,7 +136,7 @@ export default {
       filterForm: authDataConfig.filterForm,
       filterConfig: authDataConfig.filterConfig,
       dataConfig: authDataConfig.fields,
-      dialogForm: Object.assign({}, authDataConfig.dialogForm),
+      dialogForm: {},
       dialogFormRules: authDataConfig.dialogFormRules,
       dialogConfig: authDataConfig.dialogFields,
       memberDataConfig: authDataConfig.userFields,
@@ -165,10 +166,8 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
-        status: this.filterForm.status,
-        keywords: this.filterForm.keywords
+        ...this.pagination,
+        ...this.filterForm
       }
       getList(params).then(response => {
         this.list = response.data.list
@@ -195,15 +194,13 @@ export default {
       this.dialogFormVisible = true
     },
     async handleEdit(row) {
-      this.dialogForm.id = row.id
-      this.dialogForm.name = row.name
-      this.dialogForm.description = row.description
+      this.dialogFormVisible = true
+      this.dialogForm = Object.assign({}, authDataConfig.dialogForm, row)
       this.dialogStatus = 'edit'
       this.ruleList = await this.awaitGetRuleList(row.id)
       this.$nextTick(() => {
         this.$refs.formTree.setCheckedKeys(this.generateCheckedKeys(this.ruleList))
       })
-      this.dialogFormVisible = true
     },
     awaitGetRuleList(id) {
       return new Promise(resolve => {
@@ -294,3 +291,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.rule-list {
+  height: 300px;
+  border: 1px solid #dddee1;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: auto;
+}
+</style>

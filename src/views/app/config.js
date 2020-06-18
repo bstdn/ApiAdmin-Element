@@ -1,4 +1,4 @@
-const groupDataConfig = {
+export const groupDataConfig = {
   filterForm: {
     status: undefined,
     type: undefined,
@@ -13,19 +13,17 @@ const groupDataConfig = {
         { value: '1', label: '启用' },
         { value: '0', label: '禁用' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'select',
       value: 'type',
       placeholder: '请选择类别',
       path: [
-        { value: '1', label: '应用组标识' },
-        { value: '2', label: '应用组名称' }
+        { value: 1, label: '应用组标识' },
+        { value: 2, label: '应用组名称' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -35,24 +33,20 @@ const groupDataConfig = {
   fields: [
     {
       label: '应用组名称',
-      prop: 'name',
-      align: 'center'
+      prop: 'name'
     },
     {
       label: '应用组描述',
-      prop: 'description',
-      align: 'center'
+      prop: 'description'
     },
     {
       label: '应用组标识',
       prop: 'hash',
-      align: 'center',
       width: 130
     },
     {
       label: '状态',
       prop: 'status',
-      align: 'center',
       width: 200
     }
   ],
@@ -90,7 +84,7 @@ const groupDataConfig = {
   ]
 }
 
-const appDataConfig = {
+export const appDataConfig = {
   filterForm: {
     status: undefined,
     type: undefined,
@@ -102,22 +96,20 @@ const appDataConfig = {
       value: 'status',
       placeholder: '请选择状态',
       path: [
-        { value: '1', label: '启用' },
-        { value: '0', label: '禁用' }
+        { value: 1, label: '启用' },
+        { value: 0, label: '禁用' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'select',
       value: 'type',
       placeholder: '请选择类别',
       path: [
-        { value: '1', label: 'AppId' },
-        { value: '2', label: '应用名称' }
+        { value: 1, label: 'AppId' },
+        { value: 2, label: '应用名称' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -128,31 +120,26 @@ const appDataConfig = {
     {
       label: '应用名称',
       prop: 'app_name',
-      align: 'center',
       minWidth: 130
     },
     {
       label: 'AppId',
       prop: 'app_id',
-      align: 'center',
       width: 120
     },
     {
       label: 'AppSecret',
       prop: 'app_secret',
-      align: 'center',
       width: 300
     },
     {
       label: '应用说明',
       prop: 'app_info',
-      align: 'center',
       width: 160
     },
     {
       label: '状态',
       prop: 'app_status',
-      align: 'center',
       width: 200
     }
   ],
@@ -206,5 +193,3 @@ const appDataConfig = {
     }
   ]
 }
-
-export { groupDataConfig, appDataConfig }

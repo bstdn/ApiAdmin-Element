@@ -9,7 +9,7 @@
       @handleFilter="handleFilter"
       @handleRefresh="getList"
     >
-      <template slot="moreButton">
+      <template #moreButton>
         <el-button :loading="refreshLoading" type="warning" icon="el-icon-refresh-right" @click="refreshRoute">刷新路由</el-button>
         <el-button type="info" icon="el-icon-document" @click="$router.push('/wiki/list')">接口文档</el-button>
       </template>
@@ -26,10 +26,10 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="method" slot-scope="{scope}">
+      <template #method="{scope}">
         <el-tag :type="scope.row.method | methodTag">{{ scope.row.method | methodFilter }}</el-tag>
       </template>
-      <template slot="status" slot-scope="{scope}">
+      <template #status="{scope}">
         <el-switch
           v-model="scope.row.status"
           :active-value="1"
@@ -39,7 +39,7 @@
           @change="handleSwitchChange(scope.row)"
         />
       </template>
-      <template slot="moreButton" slot-scope="{scope}">
+      <template #moreButton="{scope}">
         <el-button size="mini" type="info" @click.native="handleRequest(scope.row)">请求参数</el-button>
         <el-button size="mini" type="warning" @click.native="handleResponse(scope.row)">返回参数</el-button>
       </template>
@@ -147,11 +147,8 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
-        status: this.filterForm.status,
-        type: this.filterForm.type,
-        keywords: this.filterForm.keywords
+        ...this.pagination,
+        ...this.filterForm
       }
       getList(params).then(response => {
         this.list = response.data.list

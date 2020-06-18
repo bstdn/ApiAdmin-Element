@@ -18,7 +18,7 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="hide" slot-scope="{scope}">
+      <template #hide="{scope}">
         <el-switch
           v-model="scope.row.hide"
           :active-value="1"

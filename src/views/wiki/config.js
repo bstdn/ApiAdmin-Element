@@ -1,4 +1,4 @@
-const listDataConfig = {
+export const listDataConfig = {
   headerFields: [
     {
       label: '参数名称',
@@ -60,7 +60,7 @@ const listDataConfig = {
   ]
 }
 
-const errorDataConfig = {
+export const errorDataConfig = {
   fields: [
     {
       label: '英文标识',
@@ -76,5 +76,3 @@ const errorDataConfig = {
     }
   ]
 }
-
-export { listDataConfig, errorDataConfig }

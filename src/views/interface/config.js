@@ -1,4 +1,4 @@
-const groupDataConfig = {
+export const groupDataConfig = {
   filterForm: {
     status: undefined,
     type: undefined,
@@ -10,22 +10,20 @@ const groupDataConfig = {
       value: 'status',
       placeholder: '请选择状态',
       path: [
-        { value: '1', label: '启用' },
-        { value: '0', label: '禁用' }
+        { value: 1, label: '启用' },
+        { value: 0, label: '禁用' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'select',
       value: 'type',
       placeholder: '请选择类别',
       path: [
-        { value: '1', label: '接口组标识' },
-        { value: '2', label: '接口组名称' }
+        { value: 1, label: '接口组标识' },
+        { value: 2, label: '接口组名称' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -35,30 +33,25 @@ const groupDataConfig = {
   fields: [
     {
       label: '接口组名称',
-      prop: 'name',
-      align: 'center'
+      prop: 'name'
     },
     {
       label: '接口组描述',
-      prop: 'description',
-      align: 'center'
+      prop: 'description'
     },
     {
       label: '接口组热度',
       prop: 'hot',
-      align: 'center',
       width: 120
     },
     {
       label: '接口组标识',
       prop: 'hash',
-      align: 'center',
       width: 130
     },
     {
       label: '状态',
       prop: 'status',
-      align: 'center',
       width: 200
     }
   ],
@@ -101,7 +94,7 @@ const groupDataConfig = {
   ]
 }
 
-const listDataConfig = {
+export const listDataConfig = {
   filterForm: {
     status: undefined,
     type: undefined,
@@ -113,23 +106,21 @@ const listDataConfig = {
       value: 'status',
       placeholder: '请选择状态',
       path: [
-        { value: '1', label: '启用' },
-        { value: '0', label: '禁用' }
+        { value: 1, label: '启用' },
+        { value: 0, label: '禁用' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'select',
       value: 'type',
       placeholder: '请选择类别',
       path: [
-        { value: '1', label: '接口标识' },
-        { value: '2', label: '接口名称' },
-        { value: '3', label: '真实类库' }
+        { value: 1, label: '接口标识' },
+        { value: 2, label: '接口名称' },
+        { value: 3, label: '真实类库' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -140,31 +131,26 @@ const listDataConfig = {
     {
       label: '接口名称',
       prop: 'info',
-      align: 'center',
       minWidth: 190
     },
     {
       label: '真实类库',
       prop: 'api_class',
-      align: 'center',
       width: 260
     },
     {
       label: '接口映射',
       prop: 'hash',
-      align: 'center',
       width: 130
     },
     {
       label: '请求方式',
       prop: 'method',
-      align: 'center',
       width: 90
     },
     {
       label: '状态',
       prop: 'status',
-      align: 'center',
       width: 200
     }
   ],
@@ -245,33 +231,32 @@ const listDataConfig = {
   ]
 }
 
-const requestDataConfig = {
+export const requestDataConfig = {
   fields: [
     {
       label: '字段名称',
       prop: 'show_name',
+      align: 'left',
       width: 200
     },
     {
       label: '数据类型',
       prop: 'data_type',
-      align: 'center',
       width: 100
     },
     {
       label: '是否必须',
       prop: 'is_must',
-      align: 'center',
       width: 90
     },
     {
       label: '默认值',
       prop: 'default',
-      align: 'center',
       width: 160
     },
     {
       label: '字段说明',
+      align: 'left',
       prop: 'info'
     }
   ],
@@ -332,33 +317,32 @@ const requestDataConfig = {
   ]
 }
 
-const responseDataConfig = {
+export const responseDataConfig = {
   fields: [
     {
       label: '字段名称',
       prop: 'show_name',
+      align: 'left',
       width: 200
     },
     {
       label: '数据类型',
       prop: 'data_type',
-      align: 'center',
       width: 100
     },
     {
       label: '是否必须',
       prop: 'is_must',
-      align: 'center',
       width: 90
     },
     {
       label: '默认值',
       prop: 'default',
-      align: 'center',
       width: 160
     },
     {
       label: '字段说明',
+      align: 'left',
       prop: 'info'
     }
   ],
@@ -437,5 +421,3 @@ const responseDataConfig = {
     }
   ]
 }
-
-export { groupDataConfig, listDataConfig, requestDataConfig, responseDataConfig }

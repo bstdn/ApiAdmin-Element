@@ -1,24 +1,24 @@
-const menuDataConfig = {
+export const menuDataConfig = {
   fields: [
     {
       label: '菜单名称',
-      prop: 'showName'
+      prop: 'showName',
+      align: 'left'
     },
     {
       label: '排序',
       prop: 'sort',
-      align: 'center',
       width: 80
     },
     {
       label: '菜单URL',
       prop: 'url',
-      width: 200
+      align: 'left',
+      width: 250
     },
     {
       label: '状态',
       prop: 'hide',
-      align: 'center',
       width: 200
     }
   ],
@@ -66,7 +66,7 @@ const menuDataConfig = {
   ]
 }
 
-const logDataConfig = {
+export const logDataConfig = {
   filterForm: {
     type: undefined,
     keywords: undefined
@@ -81,8 +81,7 @@ const logDataConfig = {
         { value: '2', label: '用户昵称' },
         { value: '3', label: '用户ID' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -97,37 +96,32 @@ const logDataConfig = {
     },
     {
       label: '行为名称',
-      prop: 'action_name',
-      align: 'center'
+      prop: 'action_name'
     },
     {
       label: '用户ID',
       prop: 'uid',
-      align: 'center',
       width: 120
     },
     {
       label: '用户昵称',
       prop: 'nickname',
-      align: 'center',
       width: 100
     },
     {
       label: '操作URL',
       prop: 'url',
-      align: 'center',
       width: 200
     },
     {
       label: '执行时间',
       prop: 'add_time',
-      align: 'center',
       width: 160
     }
   ]
 }
 
-const userDataConfig = {
+export const userDataConfig = {
   filterForm: {
     status: undefined,
     type: undefined,
@@ -139,22 +133,20 @@ const userDataConfig = {
       value: 'status',
       placeholder: '请选择状态',
       path: [
-        { value: '1', label: '启用' },
-        { value: '0', label: '禁用' }
+        { value: 1, label: '启用' },
+        { value: 0, label: '禁用' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'select',
       value: 'type',
       placeholder: '请选择类别',
       path: [
-        { value: '1', label: '用户账号' },
-        { value: '2', label: '用户昵称' }
+        { value: 1, label: '用户账号' },
+        { value: 2, label: '用户昵称' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -165,37 +157,31 @@ const userDataConfig = {
     {
       label: '用户账号',
       prop: 'username',
-      align: 'center',
       minWidth: 120
     },
     {
       label: '用户昵称',
       prop: 'nickname',
-      align: 'center',
       width: 120
     },
     {
       label: '登录次数',
       prop: 'login_times',
-      align: 'center',
       width: 90
     },
     {
       label: '最后登录时间',
       prop: 'last_login_time',
-      align: 'center',
       width: 160
     },
     {
       label: '最后登录IP',
       prop: 'last_login_ip',
-      align: 'center',
       width: 160
     },
     {
       label: '状态',
       prop: 'status',
-      align: 'center',
       width: 200
     }
   ],
@@ -238,7 +224,7 @@ const userDataConfig = {
   ]
 }
 
-const authDataConfig = {
+export const authDataConfig = {
   filterForm: {
     status: undefined,
     keywords: undefined
@@ -249,11 +235,10 @@ const authDataConfig = {
       value: 'status',
       placeholder: '请选择状态',
       path: [
-        { value: '1', label: '启用' },
-        { value: '0', label: '禁用' }
+        { value: 1, label: '启用' },
+        { value: 0, label: '禁用' }
       ],
-      width: '120px',
-      clearable: true
+      width: '120px'
     },
     {
       type: 'input',
@@ -265,61 +250,51 @@ const authDataConfig = {
     {
       label: '组名称',
       prop: 'name',
-      align: 'center',
       minWidth: 100
     },
     {
       label: '描述',
-      prop: 'description',
-      align: 'center'
+      prop: 'description'
     },
     {
       label: '成员授权',
       prop: 'member_list',
-      align: 'center',
       width: 116
     },
     {
       label: '状态',
       prop: 'status',
-      align: 'center',
       width: 200
     }
   ],
   userFields: [
     {
       label: '用户账号',
-      prop: 'username',
-      align: 'center'
+      prop: 'username'
     },
     {
       label: '用户昵称',
       prop: 'nickname',
-      align: 'center',
       width: 90
     },
     {
       label: '登录次数',
       prop: 'login_times',
-      align: 'center',
       width: 90
     },
     {
       label: '最后登录时间',
       prop: 'last_login_time',
-      align: 'center',
       width: 160
     },
     {
       label: '最后登录IP',
       prop: 'last_login_ip',
-      align: 'center',
       width: 160
     },
     {
       label: '状态',
       prop: 'status',
-      align: 'center',
       width: 100
     }
   ],
@@ -352,5 +327,3 @@ const authDataConfig = {
     }
   ]
 }
-
-export { menuDataConfig, logDataConfig, userDataConfig, authDataConfig }

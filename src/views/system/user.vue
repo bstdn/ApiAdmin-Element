@@ -21,16 +21,16 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="login_times" slot-scope="{scope}">
+      <template #login_times="{scope}">
         {{ scope.row.userData === null ? '' : scope.row.userData.login_times }}
       </template>
-      <template slot="last_login_time" slot-scope="{scope}">
+      <template #last_login_time="{scope}">
         {{ scope.row.userData === null ? '' : scope.row.userData.last_login_time }}
       </template>
-      <template slot="last_login_ip" slot-scope="{scope}">
+      <template #last_login_ip="{scope}">
         {{ scope.row.userData === null ? '' : scope.row.userData.last_login_ip }}
       </template>
-      <template slot="status" slot-scope="{scope}">
+      <template #status="{scope}">
         <el-switch
           v-model="scope.row.status"
           :active-value="1"
@@ -53,7 +53,7 @@
       @formClose="formClose"
       @formSubmit="dialogFormSubmit"
     >
-      <template slot="group_id">
+      <template #group_id>
         <el-checkbox-group v-model="dialogForm.group_id">
           <el-checkbox v-for="group in groupList" :key="group.id" :label="group.id + ''">{{ group.name }}</el-checkbox>
         </el-checkbox-group>
@@ -119,11 +119,8 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
-        status: this.filterForm.status,
-        type: this.filterForm.type,
-        keywords: this.filterForm.keywords
+        ...this.pagination,
+        ...this.filterForm
       }
       getList(params).then(response => {
         this.list = response.data.list

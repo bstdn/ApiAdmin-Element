@@ -24,7 +24,7 @@
           v-for="item in groupInfo"
           :key="item.id"
         >
-          <template slot="title">
+          <template #title>
             <div class="collapse-title">
               接口数量{{ item.api_info ? item.api_info.length : 0 }} | 项目热度{{ item.hot }}
             </div>
@@ -39,7 +39,7 @@
             style="margin-bottom: 10px;cursor: pointer"
             @click.native.prevent="showApiDetail(api_item.hash)"
           >
-            <template slot="title">
+            <template #title>
               <h3>/api/{{ api_item.hash }}</h3>
               <el-tag :type="api_item.method | methodType" effect="dark">{{ api_item.method | methodText }}</el-tag>
               {{ api_item.info }}
@@ -70,15 +70,15 @@
                 :data-source="headerList"
                 :data-config="headerConfig"
               >
-                <template slot="data_type" slot-scope="{scope}">
+                <template #data_type="{scope}">
                   <el-tag type="primary">{{ detailInfo.dataType[scope.row.data_type] }}</el-tag>
                 </template>
-                <template slot="is_must" slot-scope="{scope}">
+                <template #is_must="{scope}">
                   <el-tag :type="scope.row.is_must === 1 ? 'danger' : 'primary'">
                     {{ scope.row.is_must === 1 ? '复杂认证' : '简易认证' }}
                   </el-tag>
                 </template>
-                <template slot="info" slot-scope="{scope}">
+                <template #info="{scope}">
                   <el-tooltip
                     v-if="scope.row.info.length>=20"
                     :content="scope.row.info"
@@ -95,15 +95,15 @@
                 :data-source="detailInfo.request"
                 :data-config="requestConfig"
               >
-                <template slot="data_type" slot-scope="{scope}">
+                <template #data_type="{scope}">
                   <el-tag type="primary">{{ detailInfo.dataType[scope.row.data_type] }}</el-tag>
                 </template>
-                <template slot="is_must" slot-scope="{scope}">
+                <template #is_must="{scope}">
                   <el-tag :type="scope.row.is_must === 1 ? 'danger' : 'primary'">
                     {{ scope.row.is_must === 1 ? '必填' : '选填' }}
                   </el-tag>
                 </template>
-                <template slot="info" slot-scope="{scope}">
+                <template #info="{scope}">
                   <el-tooltip
                     v-if="scope.row.info.length>=20"
                     :content="scope.row.info"
@@ -120,10 +120,10 @@
                 :data-source="detailInfo.response"
                 :data-config="responseConfig"
               >
-                <template slot="data_type" slot-scope="{scope}">
+                <template #data_type="{scope}">
                   <el-tag type="primary">{{ detailInfo.dataType[scope.row.data_type] }}</el-tag>
                 </template>
-                <template slot="info" slot-scope="{scope}">
+                <template #info="{scope}">
                   <el-tooltip
                     v-if="scope.row.info.length>=20"
                     :content="scope.row.info"

@@ -23,10 +23,10 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="data_type" slot-scope="{scope}">
+      <template #data_type="{scope}">
         <el-tag>{{ dataType[scope.row.data_type] }}</el-tag>
       </template>
-      <template slot="is_must" slot-scope="{scope}">
+      <template #is_must="{scope}">
         <el-tag :type="scope.row.is_must === 1 ? 'danger' : ''">{{ scope.row.is_must === 1 ? '必填' : '可选' }}</el-tag>
       </template>
     </data-table>
@@ -43,7 +43,7 @@
       @formClose="formClose"
       @formSubmit="dialogFormSubmit"
     >
-      <template slot="defaults">
+      <template #defaults>
         <el-input
           v-model="dialogForm.defaults"
           :disabled="dialogForm.is_must === 1"
@@ -136,8 +136,7 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
+        ...this.pagination,
         hash: this.hash
       }
       getRequest(params).then(response => {

@@ -1,4 +1,4 @@
-const profileDataConfig = {
+export const profileDataConfig = {
   formFields: [
     {
       label: '用户账号',
@@ -42,5 +42,3 @@ const profileDataConfig = {
     ]
   }
 }
-
-export { profileDataConfig }

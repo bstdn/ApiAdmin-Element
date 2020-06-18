@@ -16,10 +16,10 @@
       :list-loading="listLoading"
       @handleDel="handleDel"
     >
-      <template slot="expand" slot-scope="{scope}">
+      <template #expand="{scope}">
         请求数据：{{ scope.row.data }}
       </template>
-      <template slot="add_time" slot-scope="{scope}">
+      <template #add_time="{scope}">
         {{ scope.row.add_time | parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}
       </template>
     </data-table>
@@ -74,10 +74,8 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
-        type: this.filterForm.type,
-        keywords: this.filterForm.keywords
+        ...this.pagination,
+        ...this.filterForm
       }
       getList(params).then(response => {
         this.list = response.data.list
@@ -96,3 +94,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.el-table__expanded-cell {
+  word-wrap: break-word;
+}
+</style>

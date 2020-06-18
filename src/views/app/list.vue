@@ -21,7 +21,7 @@
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
-      <template slot="app_status" slot-scope="{scope}">
+      <template #app_status="{scope}">
         <el-switch
           v-model="scope.row.app_status"
           :active-value="1"
@@ -45,12 +45,12 @@
       @formClose="formClose"
       @formSubmit="dialogFormSubmit"
     >
-      <template slot="app_secret">
+      <template #app_secret>
         <el-input v-model="dialogForm.app_secret" disabled clearable>
-          <el-button slot="append" :loading="refreshLoading" icon="el-icon-refresh-right" @click="refreshAppSecret" />
+          <el-button :loading="refreshLoading" icon="el-icon-refresh-right" @click="refreshAppSecret" />
         </el-input>
       </template>
-      <template slot="app_api">
+      <template #app_api>
         <div class="api-box">
           <div v-for="(apiArr, groupId) in groupList" :key="groupId" class="api-group">
             <div style="border-bottom: 1px solid #e9e9e9;padding-bottom: 6px;margin-bottom: 6px;">
@@ -143,11 +143,8 @@ export default {
     getList() {
       this.listLoading = true
       const params = {
-        page: this.pagination.page,
-        size: this.pagination.size,
-        status: this.filterForm.status,
-        type: this.filterForm.type,
-        keywords: this.filterForm.keywords
+        ...this.pagination,
+        ...this.filterForm
       }
       getList(params).then(response => {
         this.list = response.data.list
