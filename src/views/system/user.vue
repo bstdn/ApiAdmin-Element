@@ -7,7 +7,7 @@
       :filter-config="filterConfig"
       @handleAdd="handleAdd"
       @handleFilter="handleFilter"
-      @handleRefresh="getList"
+      @handleRefresh="refreshList"
     />
 
     <data-table
@@ -84,7 +84,7 @@ import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getGroups } from '@/api/auth'
 import { getList, changeStatus, add, edit, del } from '@/api/user'
-import { userDataConfig } from './config'
+import { userDataConfig as dataConfig } from './config'
 
 export default {
   name: 'SystemUser',
@@ -98,12 +98,12 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      filterForm: userDataConfig.filterForm,
-      filterConfig: userDataConfig.filterConfig,
-      dataConfig: userDataConfig.fields,
-      dialogForm: Object.assign({}, userDataConfig.dialogForm),
+      filterForm: dataConfig.filterForm,
+      filterConfig: dataConfig.filterConfig,
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
       dialogFormRules: this.realDialogFormRules(),
-      dialogConfig: userDataConfig.dialogFields,
+      dialogConfig: dataConfig.dialogFields,
       groupList: []
     }
   },
@@ -115,6 +115,10 @@ export default {
     handleFilter() {
       this.pagination.page = 1
       this.getList()
+    },
+    refreshList() {
+      this.getList()
+      this.getGroups()
     },
     getList() {
       this.listLoading = true
@@ -150,7 +154,7 @@ export default {
           }
         ]
       }
-      return Object.assign({}, userDataConfig.dialogFormRules, rules)
+      return { ...dataConfig.dialogFormRules, ...rules }
     },
     handleSwitchChange(row) {
       changeStatus(row.status, row.id).then(response => {
@@ -158,7 +162,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, userDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       this.dialogStatus = 'add'
       this.dialogFormVisible = true
     },

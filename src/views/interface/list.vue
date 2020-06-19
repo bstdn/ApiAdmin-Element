@@ -83,7 +83,7 @@ import { commonTitle } from '@/utils/i18n'
 import { getHash } from '@/api'
 import { getList, changeStatus, add, edit, del, refresh } from '@/api/interface'
 import { getAll } from '@/api/interface-group'
-import { listDataConfig } from './config'
+import { listDataConfig as dataConfig } from './config'
 
 export default {
   name: 'InterfaceList',
@@ -115,12 +115,12 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      filterForm: listDataConfig.filterForm,
-      filterConfig: listDataConfig.filterConfig,
-      dataConfig: listDataConfig.fields,
-      dialogForm: Object.assign({}, listDataConfig.dialogForm),
-      dialogFormRules: listDataConfig.dialogFormRules,
-      dialogConfig: listDataConfig.dialogFields,
+      filterForm: dataConfig.filterForm,
+      filterConfig: dataConfig.filterConfig,
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields,
       apiGroup: [],
       confirmRefresh: false,
       refreshLoading: false
@@ -164,7 +164,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, listDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       getHash().then(response => {
         this.dialogForm.hash = response.data.hash
       })

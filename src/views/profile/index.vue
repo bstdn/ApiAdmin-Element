@@ -47,7 +47,7 @@ import FieldsForm from '@/components/DataForm/fieldsForm'
 import AvatarUpload from '@/components/Upload/avatarUpload'
 import { commonTitle } from '@/utils/i18n'
 import { own } from '@/api/user'
-import { profileDataConfig } from './config'
+import { profileDataConfig as dataConfig } from './config'
 
 export default {
   name: 'Profile',
@@ -59,8 +59,8 @@ export default {
     return {
       submitLoading: false,
       username: '',
-      postForm: Object.assign({}, profileDataConfig.postForm),
-      formFields: profileDataConfig.formFields,
+      postForm: { ...dataConfig.postForm },
+      formFields: dataConfig.formFields,
       rules: this.realRules()
     }
   },
@@ -93,7 +93,7 @@ export default {
           }
         ]
       }
-      return Object.assign({}, profileDataConfig.rules, rules)
+      return { ...dataConfig.rules, ...rules }
     },
     formClose() {
       this.$store.dispatch('tagsView/delView', this.$route).then(({ visitedViews }) => {

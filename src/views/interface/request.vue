@@ -78,7 +78,7 @@ import Pagination from '@/components/Pagination'
 import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getRequest, add, edit, del } from '@/api/fields'
-import { requestDataConfig } from './config'
+import { requestDataConfig as dataConfig } from './config'
 
 export default {
   name: 'InterfaceRequest',
@@ -92,10 +92,10 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      dataConfig: requestDataConfig.fields,
-      dialogForm: Object.assign({}, requestDataConfig.dialogForm),
-      dialogFormRules: requestDataConfig.dialogFormRules,
-      dialogConfig: requestDataConfig.dialogFields,
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields,
       hash: '',
       dataType: {},
       apiInfo: {},
@@ -150,7 +150,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, requestDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       this.dialogStatus = 'add'
       this.dialogFormVisible = true
     },

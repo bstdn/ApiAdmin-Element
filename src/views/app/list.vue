@@ -58,9 +58,7 @@
                 :indeterminate="checkAllIndeterminate[groupId]"
                 :value="checkAllStatus[groupId]"
                 @change="handleCheckAll(groupId)"
-              >
-                {{ groupInfo[groupId] }}
-              </el-checkbox>
+              >{{ groupInfo[groupId] }}</el-checkbox>
             </div>
             <el-checkbox-group v-model="dialogForm.app_api[groupId]" @change="checkAllGroupChange(groupId)">
               <el-checkbox v-for="(api, apiKey) in apiArr" :key="apiKey" :label="api.hash">{{ api.info }}</el-checkbox>
@@ -94,7 +92,7 @@ import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getList, changeStatus, add, edit, del, getAppInfo, refreshAppSecretApi } from '@/api/app'
 import { getAll } from '@/api/app-group'
-import { appDataConfig } from './config'
+import { appDataConfig as dataConfig } from './config'
 
 export default {
   name: 'AppList',
@@ -108,12 +106,12 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      filterForm: appDataConfig.filterForm,
-      filterConfig: appDataConfig.filterConfig,
-      dataConfig: appDataConfig.fields,
-      dialogForm: Object.assign({}, appDataConfig.dialogForm),
-      dialogFormRules: appDataConfig.dialogFormRules,
-      dialogConfig: appDataConfig.dialogFields,
+      filterForm: dataConfig.filterForm,
+      filterConfig: dataConfig.filterConfig,
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields,
       refreshLoading: false,
       appGroup: [],
       groupInfo: {},
@@ -160,7 +158,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, appDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       getAppInfo().then(response => {
         const res = response.data
         this.dialogForm.app_id = res.app_id

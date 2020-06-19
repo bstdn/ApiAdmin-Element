@@ -45,7 +45,7 @@ import DataTable from '@/components/DataTable'
 import Pagination from '@/components/Pagination'
 import mixin from '@/utils/mixin'
 import { getList, del } from '@/api/log'
-import { logDataConfig } from './config'
+import { logDataConfig as dataConfig } from './config'
 
 export default {
   name: 'SystemLog',
@@ -58,9 +58,9 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      filterForm: logDataConfig.filterForm,
-      filterConfig: logDataConfig.filterConfig,
-      dataConfig: logDataConfig.fields
+      filterForm: dataConfig.filterForm,
+      filterConfig: dataConfig.filterConfig,
+      dataConfig: dataConfig.fields
     }
   },
   mounted() {

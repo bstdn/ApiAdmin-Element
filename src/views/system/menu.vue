@@ -57,7 +57,7 @@ import DataForm from '@/components/DataForm'
 import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getList, changeStatus, add, edit, del } from '@/api/menu'
-import { menuDataConfig } from './config'
+import { menuDataConfig as dataConfig } from './config'
 
 export default {
   name: 'SystemMenu',
@@ -70,10 +70,10 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      dataConfig: menuDataConfig.fields,
-      dialogForm: Object.assign({}, menuDataConfig.dialogForm),
-      dialogFormRules: menuDataConfig.dialogFormRules,
-      dialogConfig: menuDataConfig.dialogFields
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields
     }
   },
   computed: {
@@ -102,7 +102,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, menuDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       this.dialogStatus = 'add'
       this.dialogFormVisible = true
     },

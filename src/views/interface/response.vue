@@ -94,7 +94,7 @@ import Pagination from '@/components/Pagination'
 import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getResponse, upJson, edit, del } from '@/api/fields'
-import { responseDataConfig } from './config'
+import { responseDataConfig as dataConfig } from './config'
 
 export default {
   name: 'InterfaceResponse',
@@ -108,13 +108,13 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      dataConfig: responseDataConfig.fields,
-      dialogForm: Object.assign({}, responseDataConfig.dialogForm),
-      dialogFormRules: responseDataConfig.dialogFormRules,
-      dialogConfig: responseDataConfig.dialogFields,
-      uploadForm: Object.assign({}, responseDataConfig.uploadForm),
-      uploadFormRules: responseDataConfig.uploadFormRules,
-      uploadConfig: responseDataConfig.uploadFields,
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields,
+      uploadForm: {},
+      uploadFormRules: dataConfig.uploadFormRules,
+      uploadConfig: dataConfig.uploadFields,
       uploadFormVisible: false,
       uploadSubmitLoading: false,
       hash: '',
@@ -171,7 +171,7 @@ export default {
       })
     },
     handleAdd() {
-      this.uploadForm = Object.assign({}, responseDataConfig.uploadForm)
+      this.uploadForm = { ...dataConfig.uploadForm }
       this.uploadFormVisible = true
     },
     handleEdit(row) {

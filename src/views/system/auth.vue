@@ -118,7 +118,7 @@ import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getList, changeStatus, add, edit, del, delMember, getRuleList } from '@/api/auth'
 import { getUsers } from '@/api/user'
-import { authDataConfig } from './config'
+import { authDataConfig as dataConfig } from './config'
 
 export default {
   name: 'SystemAuth',
@@ -133,13 +133,13 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      filterForm: authDataConfig.filterForm,
-      filterConfig: authDataConfig.filterConfig,
-      dataConfig: authDataConfig.fields,
+      filterForm: dataConfig.filterForm,
+      filterConfig: dataConfig.filterConfig,
+      dataConfig: dataConfig.fields,
       dialogForm: {},
-      dialogFormRules: authDataConfig.dialogFormRules,
-      dialogConfig: authDataConfig.dialogFields,
-      memberDataConfig: authDataConfig.userFields,
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields,
+      memberDataConfig: dataConfig.userFields,
       memberList: [],
       memberShow: {
         memberVisible: false,
@@ -183,7 +183,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, authDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       this.dialogStatus = 'add'
       getRuleList().then(response => {
         this.ruleList = response.data.list
@@ -195,7 +195,7 @@ export default {
     },
     async handleEdit(row) {
       this.dialogFormVisible = true
-      this.dialogForm = Object.assign({}, authDataConfig.dialogForm, row)
+      this.dialogForm = { ...dataConfig.dialogForm, ...row }
       this.dialogStatus = 'edit'
       this.ruleList = await this.awaitGetRuleList(row.id)
       this.$nextTick(() => {

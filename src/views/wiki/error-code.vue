@@ -18,7 +18,7 @@ import BackToTop from '@/components/BackToTop'
 import DataTable from '@/components/DataTable'
 import mixin from '@/utils/mixin'
 import { errorCode } from '@/api/wiki'
-import { errorDataConfig } from './config'
+import { errorDataConfig as dataConfig } from './config'
 
 export default {
   name: 'WikiError',
@@ -29,7 +29,7 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      dataConfig: errorDataConfig.fields
+      dataConfig: dataConfig.fields
     }
   },
   mounted() {

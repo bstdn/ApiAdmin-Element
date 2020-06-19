@@ -69,7 +69,7 @@ import mixin from '@/utils/mixin'
 import { commonTitle } from '@/utils/i18n'
 import { getHash } from '@/api'
 import { getList, changeStatus, add, edit, del } from '@/api/app-group'
-import { groupDataConfig } from './config'
+import { groupDataConfig as dataConfig } from './config'
 
 export default {
   name: 'AppGroup',
@@ -83,12 +83,12 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      filterForm: groupDataConfig.filterForm,
-      filterConfig: groupDataConfig.filterConfig,
-      dataConfig: groupDataConfig.fields,
-      dialogForm: Object.assign({}, groupDataConfig.dialogForm),
-      dialogFormRules: groupDataConfig.dialogFormRules,
-      dialogConfig: groupDataConfig.dialogFields
+      filterForm: dataConfig.filterForm,
+      filterConfig: dataConfig.filterConfig,
+      dataConfig: dataConfig.fields,
+      dialogForm: {},
+      dialogFormRules: dataConfig.dialogFormRules,
+      dialogConfig: dataConfig.dialogFields
     }
   },
   mounted() {
@@ -119,7 +119,7 @@ export default {
       })
     },
     handleAdd() {
-      this.dialogForm = Object.assign({}, groupDataConfig.dialogForm)
+      this.dialogForm = { ...dataConfig.dialogForm }
       getHash().then(response => {
         this.dialogForm.hash = response.data.hash
       })

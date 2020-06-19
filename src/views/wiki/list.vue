@@ -165,7 +165,7 @@ import clip from '@/utils/clipboard'
 import BackToTop from '@/components/BackToTop'
 import DataTable from '@/components/DataTable'
 import { apiGroup, detail } from '@/api/wiki'
-import { listDataConfig } from './config'
+import { listDataConfig as dataConfig } from './config'
 
 export default {
   name: 'WikiList',
@@ -205,9 +205,9 @@ export default {
       detailInfo: {},
       apiDetail: {},
       headerList: [],
-      headerConfig: listDataConfig.headerFields,
-      requestConfig: listDataConfig.requestFields,
-      responseConfig: listDataConfig.responseFields
+      headerConfig: dataConfig.headerFields,
+      requestConfig: dataConfig.requestFields,
+      responseConfig: dataConfig.responseFields
     }
   },
   mounted() {
