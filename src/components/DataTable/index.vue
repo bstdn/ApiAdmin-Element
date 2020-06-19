@@ -1,7 +1,9 @@
 <template>
   <el-table
     v-loading="listLoading"
+    v-bind="$attrs"
     :data="dataSource"
+    :row-key="rowKey"
     highlight-current-row
     border
   >
@@ -28,7 +30,7 @@
       align="center"
     >
       <template slot-scope="scope">
-        <el-button v-if="edit" size="mini" type="primary" @click.native="handleEdit(scope.row)">{{ commonTitle('edit') }}</el-button>
+        <el-button v-if="edit" size="mini" type="primary" @click.native="$emit('handleEdit', scope.row)">{{ commonTitle('edit') }}</el-button>
         <slot :scope="scope" name="moreButton" />
         <el-button v-if="del" size="mini" type="danger" @click.native="handleDel(scope.$index, scope.row)">{{ commonTitle('delete') }}</el-button>
       </template>
@@ -45,6 +47,10 @@ export default {
     dataSource: {
       type: Array,
       required: true
+    },
+    rowKey: {
+      type: String,
+      default: ''
     },
     dataConfig: {
       type: Array,
@@ -76,9 +82,6 @@ export default {
     }
   },
   methods: {
-    handleEdit(index, row) {
-      this.$emit('handleEdit', index, row)
-    },
     handleDel(index, row) {
       this.$confirm(this.commonTitle('deleteTips'), this.commonTitle('tips'), {
         type: 'warning'
