@@ -2,7 +2,7 @@ export const menuDataConfig = {
   fields: [
     {
       label: '菜单名称',
-      prop: 'showName',
+      prop: 'name',
       align: 'left'
     },
     {

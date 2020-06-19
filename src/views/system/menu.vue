@@ -10,11 +10,13 @@
     <data-table
       :data-source="list"
       :data-config="dataConfig"
+      :list-loading="listLoading"
+      :row-key="'id'"
       :btn-width="160"
       :type="true"
       :edit="true"
       :del="true"
-      :list-loading="listLoading"
+      default-expand-all
       @handleEdit="handleEdit"
       @handleDel="handleDel"
     >
@@ -73,13 +75,14 @@ export default {
       dataConfig: dataConfig.fields,
       dialogForm: {},
       dialogFormRules: dataConfig.dialogFormRules,
-      dialogConfig: dataConfig.dialogFields
+      dialogConfig: dataConfig.dialogFields,
+      menuOption: []
     }
   },
   computed: {
     menuOptions() {
       const result = [{ value: 0, label: '顶级菜单' }]
-      this.list.map(v => result.push({ value: v.id, label: v.showName }))
+      this.menuOption.map(v => result.push({ value: v.id, label: v.showName }))
       return result
     }
   },
@@ -91,6 +94,7 @@ export default {
       this.listLoading = true
       getList().then(response => {
         this.list = response.data.list
+        this.menuOption = response.data.choose
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
