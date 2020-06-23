@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'Vue Element Api Admin'
+const name = defaultSettings.title || 'ApiAdmin-Element'
 
 const port = process.env.port || process.env.npm_config_port || 8080
 

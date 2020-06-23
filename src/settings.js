@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Vue Element Api Admin',
+  title: 'ApiAdmin-Element',
   showSettings: true,
   tagsView: true,
   fixedHeader: false

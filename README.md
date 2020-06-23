@@ -4,19 +4,19 @@
     </a>
 </p>
 
-# vue-element-api-admin
+# ApiAdmin-Element
 
 ## 特别提示
 
-> 本项目由`vue-cli`构建，依赖于[php-thinkphp-api-admin](https://github.com/bstdn/php-thinkphp-api-admin)
+> 本项目由`vue-cli`构建，依赖于[ApiAdmin-ThinkPHP](https://github.com/bstdn/ApiAdmin-ThinkPHP)
 
 ## Install
 
 ### Clone the project
 
 ```
-git clone https://github.com/bstdn/vue-element-api-admin.git
-cd vue-element-api-admin
+git clone https://github.com/bstdn/ApiAdmin-Element.git
+cd ApiAdmin-Element
 ```
 
 ### Prepare
@@ -79,6 +79,6 @@ npm run lint
 
 ## License
 
-[MIT](https://github.com/bstdn/vue-element-api-admin/blob/master/LICENSE)
+[MIT](https://github.com/bstdn/ApiAdmin-Element/blob/master/LICENSE)
 
 Copyright (c) 2019-present, bstdn

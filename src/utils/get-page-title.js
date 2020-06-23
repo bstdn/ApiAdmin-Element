@@ -1,7 +1,7 @@
 import defaultSetting from '@/settings'
 import { generateTitle } from '@/utils/i18n'
 
-const title = defaultSetting.title || 'Vue Element Api Admin'
+const title = defaultSetting.title || 'ApiAdmin-Element'
 
 export default function getPageTitle(pageTitle) {
   if (pageTitle) {
