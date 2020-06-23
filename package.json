@@ -1,8 +1,8 @@
 {
-  "name": "vue-element-admin",
+  "name": "vue-element-api-admin",
   "version": "4.0.1",
   "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
-  "author": "何秀钢 <xiugang.he@chukou1.com>",
+  "author": "何秀钢 <bstdn@126.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -22,10 +22,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bstdn/vue-element-admin.git"
+    "url": "git+https://github.com/bstdn/ApiAdmin-Element.git"
   },
   "bugs": {
-    "url": "https://github.com/bstdn/vue-element-admin/issues"
+    "url": "https://github.com/bstdn/ApiAdmin-Element/issues"
   },
   "dependencies": {
     "axios": "0.19.0",
